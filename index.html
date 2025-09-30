@@ -5,267 +5,277 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bogdan Chirilă - Web Developer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
-    /* ===== FONT & RESET ===== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #f9fafb;
-      color: #1e293b;
+      background: #f8fafc;
+      color: #0f172a;
       line-height: 1.6;
       scroll-behavior: smooth;
     }
     a { text-decoration: none; color: inherit; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-    /* ===== LAYOUT ===== */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* ===== NAVBAR ===== */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       z-index: 1000;
     }
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0;
+      padding: 18px 0;
     }
     .logo {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .nav-links {
-      display: flex;
-      gap: 24px;
-    }
+    .nav-links { display: flex; gap: 28px; }
     .nav-links a {
       font-weight: 500;
-      transition: color 0.2s;
+      position: relative;
+      transition: color 0.3s;
     }
-    .nav-links a:hover {
-      color: #2563eb;
+    .nav-links a:hover { color: #2563eb; }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2563eb;
+      transition: width 0.3s;
     }
+    .nav-links a:hover::after { width: 100%; }
+
     .lang-toggle {
-      background: #dbeafe;
-      color: #1d4ed8;
+      background: #e0f2fe;
+      color: #0369a1;
       border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s;
     }
     .lang-toggle:hover {
-      background: #bfdbfe;
+      background: #bae6fd;
+      transform: scale(1.05);
     }
 
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 100px 0 80px;
-    }
+    section { padding: 120px 0 100px; }
     .section-title {
       text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      color: #1e293b;
+      font-size: 2.4rem;
+      margin-bottom: 50px;
+      font-weight: 700;
+      color: #0f172a;
     }
+
     .hero {
       text-align: center;
-      padding-top: 160px;
+      padding-top: 180px;
     }
     .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 16px;
+      font-size: 3.2rem;
+      margin-bottom: 20px;
+      font-weight: 800;
+      background: linear-gradient(120deg, #1e40af, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero p {
-      font-size: 1.25rem;
-      color: #4b5563;
-      max-width: 600px;
-      margin: 0 auto 32px;
+      font-size: 1.3rem;
+      color: #475569;
+      max-width: 650px;
+      margin: 0 auto 36px;
     }
     .btn {
       display: inline-block;
-      background: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
       color: white;
-      padding: 12px 28px;
-      border-radius: 8px;
+      padding: 14px 32px;
+      border-radius: 12px;
       font-weight: 600;
-      transition: background 0.2s;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
     }
     .btn:hover {
-      background: #1d4ed8;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(37, 99, 235, 0.45);
     }
 
-    /* ===== ABOUT & CONTACT ===== */
     .text-content {
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto;
       text-align: center;
-    }
-
-    /* ===== SKILLS ===== */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 20px;
-    }
-    .skill-card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-    }
-    .skill-card h3 {
-      margin-bottom: 12px;
-      color: #2563eb;
-      font-size: 1.1rem;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .tag {
-      background: #f1f5f9;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      font-size: 1.05rem;
       color: #334155;
     }
 
-    /* ===== PROJECTS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 24px;
+    }
+    .skill-card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .skill-card h3 {
+      margin-bottom: 16px;
+      color: #2563eb;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag {
+      background: #f1f5f9;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      color: #334155;
+      font-weight: 500;
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 24px;
     }
     .project-card {
       background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
     }
     .project-card h3 {
-      margin-bottom: 12px;
-      font-size: 1.25rem;
+      margin-bottom: 14px;
+      font-size: 1.35rem;
+      color: #0f172a;
     }
     .project-card p {
-      color: #4b5563;
-      margin-bottom: 16px;
-      font-size: 0.95rem;
+      color: #475569;
+      margin-bottom: 20px;
+      font-size: 0.98rem;
     }
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
     .tech-tag {
       background: #dbeafe;
       color: #1d4ed8;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
     .project-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       color: #2563eb;
-      font-weight: 500;
+      font-weight: 600;
+      transition: gap 0.3s;
     }
+    .project-link:hover { gap: 12px; }
 
-    /* ===== CONTACT ===== */
     .contact-info {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
-      margin-top: 20px;
+      gap: 20px;
+      margin-top: 24px;
     }
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.05rem;
+      gap: 12px;
+      font-size: 1.1rem;
     }
     .contact-icon {
       color: #2563eb;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
-    /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding: 30px 0;
+      padding: 40px 0 20px;
       color: #64748b;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       border-top: 1px solid #e2e8f0;
     }
 
-    /* ===== MOBILE ADJUSTMENTS ===== */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1.1rem; }
-      .section-title { font-size: 1.8rem; }
-      .navbar { flex-direction: column; gap: 12px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 1.15rem; }
+      .section-title { font-size: 2rem; }
+      .navbar { flex-direction: column; gap: 14px; }
+      .nav-links { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
+  <nav data-aos="fade-down">
     <div class="container navbar">
       <div class="logo">Bogdan Chirilă</div>
       <div class="nav-links">
-        <a href="#home">[home]</a>
-        <a href="#about">[about]</a>
-        <a href="#skills">[skills]</a>
-        <a href="#projects">[projects]</a>
-        <a href="#contact">[contact]</a>
+        <a href="#home">Acasă</a>
+        <a href="#about">Despre</a>
+        <a href="#skills">Competențe</a>
+        <a href="#projects">Proiecte</a>
+        <a href="#contact">Contact</a>
       </div>
       <button class="lang-toggle" id="langToggle">🇬🇧 EN</button>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section id="home" class="hero">
-    <h1 id="heroTitle">Web Developer & Problem Solver</h1>
-    <p id="heroSubtitle">Construiesc aplicații web robuste cu Python, Flask și JavaScript.</p>
-    <a href="#projects" class="btn" id="heroBtn">Vezi proiectele</a>
+    <h1 data-aos="fade-up">Web Developer & Problem Solver</h1>
+    <p data-aos="fade-up" data-aos-delay="100">Construiesc aplicații web robuste cu Python, Flask și JavaScript.</p>
+    <a href="#projects" class="btn" data-aos="fade-up" data-aos-delay="200">Vezi proiectele</a>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
-    <h2 class="section-title" id="aboutTitle">Despre mine</h2>
-    <div class="text-content">
+    <h2 class="section-title" data-aos="fade-up">Despre mine</h2>
+    <div class="text-content" data-aos="fade-up" data-aos-delay="100">
       <p id="aboutText">
         Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare.
       </p>
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
-    <h2 class="section-title" id="skillsTitle">Competențe Tehnice</h2>
+    <h2 class="section-title" data-aos="fade-up">Competențe Tehnice</h2>
     <div class="skills-grid">
-      <div class="skill-card">
-        <h3 id="cat1">Limbaje</h3>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+        <h3>Limbaje</h3>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">JavaScript</span>
@@ -274,8 +284,8 @@
           <span class="tag">PHP</span>
         </div>
       </div>
-      <div class="skill-card">
-        <h3 id="cat2">Web</h3>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+        <h3>Web</h3>
         <div class="tags">
           <span class="tag">HTML5</span>
           <span class="tag">CSS3</span>
@@ -284,15 +294,15 @@
           <span class="tag">PHP</span>
         </div>
       </div>
-      <div class="skill-card">
-        <h3 id="cat3">Baze de date</h3>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+        <h3>Baze de date</h3>
         <div class="tags">
           <span class="tag">SQL</span>
           <span class="tag">Cloud DB</span>
         </div>
       </div>
-      <div class="skill-card">
-        <h3 id="cat4">Altele</h3>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+        <h3>Altele</h3>
         <div class="tags">
           <span class="tag">Git</span>
           <span class="tag">Android Studio</span>
@@ -304,13 +314,12 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
-    <h2 class="section-title" id="projectsTitle">Proiecte</h2>
+    <h2 class="section-title" data-aos="fade-up">Proiecte</h2>
     <div class="projects-grid">
-      <div class="project-card">
-        <h3 id="proj1Title">Platformă de Închirieri Auto</h3>
-        <p id="proj1Desc">O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.</p>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <h3>Platformă de Închirieri Auto</h3>
+        <p>O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
           <span class="tech-tag">Flask</span>
@@ -321,9 +330,9 @@
           <i class="fab fa-github"></i> GitHub
         </a>
       </div>
-      <div class="project-card">
-        <h3 id="proj2Title">Aplicații și Experimente Tech</h3>
-        <p id="proj2Desc">Proiecte personale în Python, JavaScript și Android: jocuri simple, scripturi de automatizare și aplicații utilitare.</p>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>Aplicații și Experimente Tech</h3>
+        <p>Proiecte personale în Python, JavaScript și Android: jocuri simple, scripturi de automatizare și aplicații utilitare.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
           <span class="tech-tag">JavaScript</span>
@@ -337,52 +346,42 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
-    <h2 class="section-title" id="contactTitle">Contact</h2>
+    <h2 class="section-title" data-aos="fade-up">Contact</h2>
     <div class="contact-info">
-      <div class="contact-item">
+      <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
         <i class="fas fa-envelope contact-icon"></i>
         <a href="mailto:b.chirila@ymail.com">b.chirila@ymail.com</a>
       </div>
-      <div class="contact-item">
+      <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-phone contact-icon"></i>
         <span>+40 751 341 756</span>
       </div>
-      <div class="contact-item">
+      <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-map-marker-alt contact-icon"></i>
         <span>București, România</span>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
+  <footer data-aos="fade-in">
     &copy; <span id="year">2024</span> Bogdan Chirilă. Toate drepturile rezervate.
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // Set year dynamically
     document.getElementById('year').textContent = new Date().getFullYear();
+    AOS.init({ duration: 800, once: true });
 
-    // Translations
     const translations = {
       ro: {
-        home: "Acasă",
-        about: "Despre",
-        skills: "Competențe",
-        projects: "Proiecte",
-        contact: "Contact",
+        home: "Acasă", about: "Despre", skills: "Competențe", projects: "Proiecte", contact: "Contact",
         heroTitle: "Web Developer & Problem Solver",
         heroSubtitle: "Construiesc aplicații web robuste cu Python, Flask și JavaScript.",
         heroBtn: "Vezi proiectele",
         aboutTitle: "Despre mine",
         aboutText: "Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare.",
         skillsTitle: "Competențe Tehnice",
-        cat1: "Limbaje",
-        cat2: "Web",
-        cat3: "Baze de date",
-        cat4: "Altele",
         projectsTitle: "Proiecte",
         proj1Title: "Platformă de Închirieri Auto",
         proj1Desc: "O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.",
@@ -391,21 +390,13 @@
         contactTitle: "Contact"
       },
       en: {
-        home: "Home",
-        about: "About",
-        skills: "Skills",
-        projects: "Projects",
-        contact: "Contact",
+        home: "Home", about: "About", skills: "Skills", projects: "Projects", contact: "Contact",
         heroTitle: "Web Developer & Problem Solver",
         heroSubtitle: "I build robust web apps with Python, Flask, and JavaScript.",
         heroBtn: "View Projects",
         aboutTitle: "About Me",
         aboutText: "I'm a serious, dedicated, and motivated 23-year-old passionate about IT and eager to contribute actively in a professional work environment. I am characterized by seriousness, a well-developed team spirit, and a constant desire to learn and improve. I have a responsible attitude toward work and approach every task with attention and dedication.",
         skillsTitle: "Technical Skills",
-        cat1: "Languages",
-        cat2: "Web",
-        cat3: "Databases",
-        cat4: "Tools & Interests",
         projectsTitle: "Projects",
         proj1Title: "Car Rental Platform",
         proj1Desc: "A web application for managing car rentals with cloud integration and relational databases. My bachelor's thesis project at Spiru Haret University.",
@@ -416,43 +407,35 @@
     };
 
     let currentLang = 'ro';
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const langToggle = document.getElementById('langToggle');
 
     function updateText(lang) {
       currentLang = lang;
-      document.getElementById('heroTitle').textContent = translations[lang].heroTitle;
-      document.getElementById('heroSubtitle').textContent = translations[lang].heroSubtitle;
-      document.getElementById('heroBtn').textContent = translations[lang].heroBtn;
-      document.getElementById('aboutTitle').textContent = translations[lang].aboutTitle;
+      document.querySelector('.hero h1').textContent = translations[lang].heroTitle;
+      document.querySelector('.hero p').textContent = translations[lang].heroSubtitle;
+      document.querySelector('.btn').textContent = translations[lang].heroBtn;
+      document.querySelector('#about .section-title').textContent = translations[lang].aboutTitle;
       document.getElementById('aboutText').textContent = translations[lang].aboutText;
-      document.getElementById('skillsTitle').textContent = translations[lang].skillsTitle;
-      document.getElementById('cat1').textContent = translations[lang].cat1;
-      document.getElementById('cat2').textContent = translations[lang].cat2;
-      document.getElementById('cat3').textContent = translations[lang].cat3;
-      document.getElementById('cat4').textContent = translations[lang].cat4;
-      document.getElementById('projectsTitle').textContent = translations[lang].projectsTitle;
-      document.getElementById('proj1Title').textContent = translations[lang].proj1Title;
-      document.getElementById('proj1Desc').textContent = translations[lang].proj1Desc;
-      document.getElementById('proj2Title').textContent = translations[lang].proj2Title;
-      document.getElementById('proj2Desc').textContent = translations[lang].proj2Desc;
-      document.getElementById('contactTitle').textContent = translations[lang].contactTitle;
+      document.querySelector('#skills .section-title').textContent = translations[lang].skillsTitle;
+      document.querySelector('#projects .section-title').textContent = translations[lang].projectsTitle;
+      document.querySelectorAll('.project-card h3')[0].textContent = translations[lang].proj1Title;
+      document.querySelectorAll('.project-card p')[0].textContent = translations[lang].proj1Desc;
+      document.querySelectorAll('.project-card h3')[1].textContent = translations[lang].proj2Title;
+      document.querySelectorAll('.project-card p')[1].textContent = translations[lang].proj2Desc;
+      document.querySelector('#contact .section-title').textContent = translations[lang].contactTitle;
 
-      // Update navbar links
-      const navLinks = ['home', 'about', 'skills', 'projects', 'contact'];
-      navLinks.forEach((id, i) => {
-        document.querySelectorAll('.nav-links a')[i].textContent = translations[lang][id];
+      const keys = ['home', 'about', 'skills', 'projects', 'contact'];
+      navLinks.forEach((link, i) => {
+        link.textContent = translations[lang][keys[i]];
       });
 
-      // Update button text
-      document.getElementById('langToggle').textContent = lang === 'ro' ? '🇬🇧 EN' : '🇷🇴 RO';
+      langToggle.textContent = lang === 'ro' ? '🇬🇧 EN' : '🇷🇴 RO';
     }
 
-    document.getElementById('langToggle').addEventListener('click', () => {
-      const newLang = currentLang === 'ro' ? 'en' : 'ro';
-      updateText(newLang);
+    langToggle.addEventListener('click', () => {
+      updateText(currentLang === 'ro' ? 'en' : 'ro');
     });
-
-    // Initialize
-    updateText('ro');
   </script>
 </body>
 </html>
