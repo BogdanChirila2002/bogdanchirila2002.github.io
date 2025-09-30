@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portofoliu web al lui Bogdan Chirilă – Web Developer cu experiență în Python, Flask, JavaScript și cloud.">
   <title>Bogdan Chirilă — Web Developer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --accent: #818cf8;
+      --accent2: #c084fc;
+      --card: #1e293b;
+      --shadow: rgba(0, 0, 0, 0.4);
+      --border: #334155;
+    }
+    .light-theme {
       --bg: #fafbff;
       --text: #0e1424;
-      --accent: #4f46e5;
-      --accent2: #7c3aed;
       --card: #ffffff;
       --shadow: rgba(0, 0, 0, 0.06);
       --border: #e2e8f0;
-    }
-    .dark-theme {
-      --bg: #0f172a;
-      --text: #f1f5f9;
-      --card: #1e293b;
-      --shadow: rgba(0, 0, 0, 0.3);
-      --border: #334155;
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -31,7 +33,8 @@
       color: var(--text);
       line-height: 1.7;
       scroll-behavior: smooth;
-      transition: background 0.4s, color 0.4s;
+      transition: background 0.5s, color 0.5s;
+      overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
@@ -43,13 +46,13 @@
       right: 0;
       padding: 20px 0;
       backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(15, 23, 42, 0.85);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
       transition: background 0.4s, border-color 0.4s;
     }
-    .dark-theme nav {
-      background: rgba(15, 23, 42, 0.8);
+    .light-theme nav {
+      background: rgba(255, 255, 255, 0.85);
     }
     .navbar {
       display: flex;
@@ -90,29 +93,29 @@
       align-items: center;
     }
     .lang-toggle, .theme-toggle {
-      background: linear-gradient(135deg, #e0f2fe, #dbeafe);
-      color: #0c4a6e;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #c7d2fe;
       border: none;
       padding: 8px 18px;
       border-radius: 50px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-    }
-    .dark-theme .lang-toggle,
-    .dark-theme .theme-toggle {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      color: #c7d2fe;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .light-theme .lang-toggle,
+    .light-theme .theme-toggle {
+      background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+      color: #0c4a6e;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
     }
     .lang-toggle:hover, .theme-toggle:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25);
-    }
-    .dark-theme .lang-toggle:hover,
-    .dark-theme .theme-toggle:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+    .light-theme .lang-toggle:hover,
+    .light-theme .theme-toggle:hover {
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25);
     }
 
     section { padding: 140px 0 120px; }
@@ -142,18 +145,37 @@
     .hero {
       text-align: center;
       padding-top: 180px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.15), transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse 8s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
+      50% { opacity: 0.6; transform: translateX(-50%) scale(1.05); }
+      100% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
     }
     .hero h1 {
       font-size: 3.6rem;
       font-weight: 900;
       margin-bottom: 24px;
       line-height: 1.1;
-      background: linear-gradient(120deg, var(--accent), var(--accent2), #ec4899);
+      background: linear-gradient(120deg, var(--accent), var(--accent2), #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       background-size: 300% 300%;
-      animation: gradientBG 8s ease infinite;
+      animation: gradientBG 10s ease infinite;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
@@ -162,12 +184,12 @@
     }
     .hero p {
       font-size: 1.35rem;
-      color: #94a3b8;
+      color: #cbd5e1;
       max-width: 700px;
       margin: 0 auto 40px;
       font-weight: 400;
     }
-    .dark-theme .hero p { color: #cbd5e1; }
+    .light-theme .hero p { color: #334155; }
 
     .btn {
       display: inline-block;
@@ -178,12 +200,12 @@
       font-weight: 700;
       font-size: 1.1rem;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 10px 30px rgba(129, 140, 248, 0.3);
       letter-spacing: -0.02em;
     }
     .btn:hover {
       transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 14px 40px rgba(79, 70, 229, 0.45);
+      box-shadow: 0 14px 40px rgba(129, 140, 248, 0.45);
     }
 
     .text-content {
@@ -198,7 +220,7 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 36px;
       margin-top: 30px;
     }
@@ -208,10 +230,21 @@
       border-radius: 24px;
       box-shadow: 0 10px 30px var(--shadow);
       transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--accent), var(--accent2));
     }
     .skill-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      transform: translateY(-10px) rotateX(3deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
     .skill-card h3 {
       font-size: 1.3rem;
@@ -219,81 +252,85 @@
       color: var(--accent);
       font-weight: 700;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
     .tag {
-      background: #f0f9ff;
-      color: #0369a1;
-      padding: 10px 20px;
+      background: #334155;
+      color: #c7d2fe;
+      padding: 8px 18px;
       border-radius: 50px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 600;
       transition: all 0.2s;
     }
-    .dark-theme .tag {
-      background: #334155;
-      color: #c7d2fe;
+    .light-theme .tag {
+      background: #f0f9ff;
+      color: #0369a1;
     }
     .tag:hover {
-      background: #dbeafe;
+      background: #475569;
       transform: scale(1.05);
     }
-    .dark-theme .tag:hover {
-      background: #475569;
+    .light-theme .tag:hover {
+      background: #dbeafe;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 40px;
       margin-top: 30px;
     }
     .project-card {
       background: var(--card);
       border-radius: 24px;
-      padding: 36px;
+      padding: 32px;
       box-shadow: 0 10px 30px var(--shadow);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
     }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 6px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--accent), var(--accent2));
-    }
     .project-card:hover {
-      transform: translateY(-14px);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.2);
+      transform: translateY(-12px);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.3);
+    }
+    .project-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: white;
+      font-size: 1.4rem;
     }
     .project-card h3 {
-      font-size: 1.45rem;
-      margin-bottom: 18px;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
       color: var(--text);
       font-weight: 700;
     }
     .project-card p {
       color: #94a3b8;
-      margin-bottom: 24px;
-      font-size: 0.98rem;
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
-    .dark-theme .project-card p { color: #cbd5e1; }
+    .light-theme .project-card p { color: #475569; }
 
-    .project-tech { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .tech-tag {
-      background: #f0f9ff;
-      color: var(--accent);
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .dark-theme .tech-tag {
       background: #334155;
       color: #c7d2fe;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .light-theme .tech-tag {
+      background: #f0f9ff;
+      color: var(--accent);
     }
     .project-link {
       display: inline-flex;
@@ -326,7 +363,7 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+      background: linear-gradient(135deg, #334155, #475569);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -334,16 +371,16 @@
       color: var(--accent);
       transition: all 0.3s;
     }
-    .dark-theme .contact-icon {
-      background: linear-gradient(135deg, #334155, #475569);
-      color: #c7d2fe;
+    .light-theme .contact-icon {
+      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+      color: var(--accent);
     }
     .contact-item:hover .contact-icon {
       transform: rotate(10deg) scale(1.1);
-      background: linear-gradient(135deg, #c7d2fe, #dbeafe);
-    }
-    .dark-theme .contact-item:hover .contact-icon {
       background: linear-gradient(135deg, #475569, #64748b);
+    }
+    .light-theme .contact-item:hover .contact-icon {
+      background: linear-gradient(135deg, #c7d2fe, #dbeafe);
     }
 
     footer {
@@ -353,7 +390,7 @@
       font-size: 1rem;
       border-top: 1px solid var(--border);
     }
-    .dark-theme footer { color: #64748b; }
+    .light-theme footer { color: #64748b; }
 
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.6rem; }
@@ -365,7 +402,7 @@
     }
   </style>
 </head>
-<body class="light-theme">
+<body class="dark-theme">
 
   <nav data-aos="fade-down" data-aos-duration="1000">
     <div class="container navbar">
@@ -380,7 +417,7 @@
       <div class="controls">
         <button class="lang-toggle" id="langToggle">🇬🇧 EN</button>
         <button class="theme-toggle" id="themeToggle">
-          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
         </button>
       </div>
     </div>
@@ -396,7 +433,7 @@
     <h2 class="section-title" data-aos="fade-up">Despre Mine</h2>
     <div class="text-content" data-aos="fade-up" data-aos-delay="200">
       <p id="aboutText">
-        Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Îmi place să lucrez corect, să respect și să fiu respectat, iar integritatea este o valoare esențială pentru mine.
+        Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucrez independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.
       </p>
     </div>
   </section>
@@ -450,6 +487,7 @@
     <h2 class="section-title" data-aos="fade-up">Proiecte Selectate</h2>
     <div class="projects-grid">
       <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-icon"><i class="fas fa-car"></i></div>
         <h3>Platformă de Închirieri Auto</h3>
         <p>O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.</p>
         <div class="project-tech">
@@ -463,6 +501,7 @@
         </a>
       </div>
       <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-icon"><i class="fas fa-robot"></i></div>
         <h3>Task Automator cu Python</h3>
         <p>Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web — perfect pentru productivitate personală.</p>
         <div class="project-tech">
@@ -476,13 +515,42 @@
         </a>
       </div>
       <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-        <h3>Aplicații & Experimente Tech</h3>
-        <p>Proiecte personale în Python, JavaScript și Android: jocuri simple, scripturi de automatizare și aplicații utilitare.</p>
+        <div class="project-icon"><i class="fas fa-gamepad"></i></div>
+        <h3>Pygame Strategy Game</h3>
+        <p>Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Android</span>
           <span class="tech-tag">Pygame</span>
+          <span class="tech-tag">OOP</span>
+          <span class="tech-tag">Game Logic</span>
+        </div>
+        <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="project-icon"><i class="fas fa-code-branch"></i></div>
+        <h3>Hackathon API Integrator</h3>
+        <p>O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, news) într-un singur dashboard.</p>
+        <div class="project-tech">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">REST APIs</span>
+          <span class="tech-tag">HTML/CSS</span>
+        </div>
+        <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="project-icon"><i class="fas fa-cloud"></i></div>
+        <h3>Cloud Personal Dashboard</h3>
+        <p>Un dashboard personal care urmărește activitatea GitHub, stocul cloud și sarcinile zilnice — cu integrare Firebase și notificări.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">Firebase</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Cloud</span>
         </div>
         <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
           <i class="fab fa-github"></i> GitHub
@@ -522,15 +590,15 @@
     const body = document.body;
     const icon = themeToggle.querySelector('i');
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     body.className = savedTheme + '-theme';
-    icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 
     themeToggle.addEventListener('click', () => {
-      const isLight = body.classList.contains('light-theme');
-      body.className = isLight ? 'dark-theme' : 'light-theme';
-      icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-      localStorage.setItem('theme', isLight ? 'dark' : 'light');
+      const isDark = body.classList.contains('dark-theme');
+      body.className = isDark ? 'light-theme' : 'dark-theme';
+      icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
     });
 
     const translations = {
@@ -540,15 +608,19 @@
         heroSubtitle: "Dezvolt aplicații web moderne cu Python, Flask și JavaScript — cu atenție la performanță, securitate și experiență utilizator.",
         heroBtn: "Explorează Proiectele",
         aboutTitle: "Despre Mine",
-        aboutText: "Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Îmi place să lucrez corect, să respect și să fiu respectat, iar integritatea este o valoare esențială pentru mine.",
+        aboutText: "Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucrez independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.",
         skillsTitle: "Expertiză Tehnică",
         projectsTitle: "Proiecte Selectate",
         proj1Title: "Platformă de Închirieri Auto",
         proj1Desc: "O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.",
         proj2Title: "Task Automator cu Python",
         proj2Desc: "Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web — perfect pentru productivitate personală.",
-        proj3Title: "Aplicații & Experimente Tech",
-        proj3Desc: "Proiecte personale în Python, JavaScript și Android: jocuri simple, scripturi de automatizare și aplicații utilitare.",
+        proj3Title: "Pygame Strategy Game",
+        proj3Desc: "Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.",
+        proj4Title: "Hackathon API Integrator",
+        proj4Desc: "O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, news) într-un singur dashboard.",
+        proj5Title: "Cloud Personal Dashboard",
+        proj5Desc: "Un dashboard personal care urmărește activitatea GitHub, stocul cloud și sarcinile zilnice — cu integrare Firebase și notificări.",
         contactTitle: "Hai să Colaborăm!"
       },
       en: {
@@ -557,15 +629,19 @@
         heroSubtitle: "I build modern web applications with Python, Flask, and JavaScript — focused on performance, security, and user experience.",
         heroBtn: "Explore Projects",
         aboutTitle: "About Me",
-        aboutText: "I'm a serious, dedicated, and motivated 23-years-old passionate about IT and eager to contribute actively in a professional environment. I value seriousness, strong teamwork, and a constant drive to learn and improve. I approach every task with responsibility, attention, and full commitment. I believe in integrity, mutual respect, and clean, efficient work.",
+        aboutText: "I'm a serious, dedicated, and motivated 23-years-old passionate about IT and eager to contribute actively in a professional environment. I value seriousness, strong teamwork, and a constant drive to learn and improve. I approach every task with responsibility, attention, and full commitment. I'm sociable, communicative, and open to collaboration, yet capable of working independently when needed. I believe in doing things right, mutual respect, and consider integrity and common sense essential values in both personal and professional life.",
         skillsTitle: "Technical Expertise",
         projectsTitle: "Selected Projects",
         proj1Title: "Car Rental Platform",
         proj1Desc: "A web application for managing car rentals with cloud integration and relational databases. My bachelor's thesis at Spiru Haret University.",
         proj2Title: "Python Task Automator",
         proj2Desc: "An advanced automation script that organizes files, sends scheduled emails, and scrapes web data — perfect for personal productivity.",
-        proj3Title: "Tech Experiments & Apps",
-        proj3Desc: "Personal projects in Python, JavaScript, and Android: simple games, automation scripts, and utility apps.",
+        proj3Title: "Pygame Strategy Game",
+        proj3Desc: "A 2D strategy game built with Python and Pygame, inspired by my passion for strategic and collaborative online games.",
+        proj4Title: "Hackathon API Integrator",
+        proj4Desc: "A rapid prototype built during a hackathon that integrates multiple APIs (weather, crypto, news) into a unified dashboard.",
+        proj5Title: "Cloud Personal Dashboard",
+        proj5Desc: "A personal dashboard tracking GitHub activity, cloud storage, and daily tasks — with Firebase integration and notifications.",
         contactTitle: "Let's Collaborate!"
       }
     };
@@ -586,16 +662,21 @@
       document.querySelector('#contact .section-title').textContent = translations[lang].contactTitle;
 
       const projCards = document.querySelectorAll('.project-card');
-      projCards[0].querySelector('h3').textContent = translations[lang].proj1Title;
-      projCards[0].querySelector('p').textContent = translations[lang].proj1Desc;
-      projCards[1].querySelector('h3').textContent = translations[lang].proj2Title;
-      projCards[1].querySelector('p').textContent = translations[lang].proj2Desc;
-      projCards[2].querySelector('h3').textContent = translations[lang].proj3Title;
-      projCards[2].querySelector('p').textContent = translations[lang].proj3Desc;
+      const projData = [
+        ['proj1Title', 'proj1Desc'],
+        ['proj2Title', 'proj2Desc'],
+        ['proj3Title', 'proj3Desc'],
+        ['proj4Title', 'proj4Desc'],
+        ['proj5Title', 'proj5Desc']
+      ];
+      projData.forEach((keys, i) => {
+        projCards[i].querySelector('h3').textContent = translations[lang][keys[0]];
+        projCards[i].querySelector('p').textContent = translations[lang][keys[1]];
+      });
 
-      const keys = ['home', 'about', 'skills', 'projects', 'contact'];
+      const navKeys = ['home', 'about', 'skills', 'projects', 'contact'];
       navLinks.forEach((link, i) => {
-        link.textContent = translations[lang][keys[i]];
+        link.textContent = translations[lang][navKeys[i]];
       });
 
       langToggle.textContent = lang === 'ro' ? '🇬🇧 EN' : '🇷🇴 RO';
@@ -607,4 +688,3 @@
   </script>
 </body>
 </html>
-
