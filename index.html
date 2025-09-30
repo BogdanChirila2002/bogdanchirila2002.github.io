@@ -8,23 +8,22 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #0f172a;
+      --bg: #0b0f19;
       --text: #f1f5f9;
       --accent: #818cf8;
       --accent2: #c084fc;
-      --card: #1e293b;
-      --shadow: rgba(0, 0, 0, 0.4);
-      --border: #334155;
+      --card: #121826;
+      --shadow: rgba(0, 0, 0, 0.5);
+      --border: #242f45;
     }
     .light-theme {
-      --bg: #fafbff;
-      --text: #0e1424;
-      --card: #ffffff;
-      --shadow: rgba(0, 0, 0, 0.06);
+      --bg: #ffffff;
+      --text: #0f172a;
+      --card: #f8fafc;
+      --shadow: rgba(0, 0, 0, 0.08);
       --border: #e2e8f0;
     }
     body {
@@ -33,11 +32,54 @@
       color: var(--text);
       line-height: 1.7;
       scroll-behavior: smooth;
-      transition: background 0.5s, color 0.5s;
       overflow-x: hidden;
+      position: relative;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: transform 0.1s ease;
+    }
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9998;
+      transition: transform 0.3s ease, width 0.3s, height 0.3s;
+    }
+    .hover-target {
+      cursor: none !important;
+    }
+    .hover-target:hover ~ .cursor {
+      transform: translate(-50%, -50%) scale(2.5);
+      background: rgba(129, 140, 248, 0.1);
+    }
+    .hover-target:hover ~ .cursor-follower {
+      transform: translate(-50%, -50%) scale(1.8);
+      border-color: rgba(129, 140, 248, 0.6);
+    }
 
     nav {
       position: fixed;
@@ -46,10 +88,9 @@
       right: 0;
       padding: 20px 0;
       backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(11, 15, 25, 0.85);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
-      transition: background 0.4s, border-color 0.4s;
     }
     .light-theme nav {
       background: rgba(255, 255, 255, 0.85);
@@ -71,7 +112,6 @@
       font-weight: 600;
       position: relative;
       padding: 4px 0;
-      transition: color 0.3s;
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a::after {
@@ -93,7 +133,7 @@
       align-items: center;
     }
     .lang-toggle, .theme-toggle {
-      background: linear-gradient(135deg, #1e293b, #334155);
+      background: linear-gradient(135deg, #121826, #242f45);
       color: #c7d2fe;
       border: none;
       padding: 8px 18px;
@@ -101,7 +141,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     .light-theme .lang-toggle,
     .light-theme .theme-toggle {
@@ -111,11 +151,7 @@
     }
     .lang-toggle:hover, .theme-toggle:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-    .light-theme .lang-toggle:hover,
-    .light-theme .theme-toggle:hover {
-      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
     }
 
     section { padding: 140px 0 120px; }
@@ -147,26 +183,8 @@
       padding-top: 180px;
       position: relative;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(129, 140, 248, 0.15), transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse 8s infinite;
-    }
-    @keyframes pulse {
-      0% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
-      50% { opacity: 0.6; transform: translateX(-50%) scale(1.05); }
-      100% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
-    }
     .hero h1 {
-      font-size: 3.6rem;
+      font-size: 3.8rem;
       font-weight: 900;
       margin-bottom: 24px;
       line-height: 1.1;
@@ -175,7 +193,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       background-size: 300% 300%;
-      animation: gradientBG 10s ease infinite;
+      animation: gradientBG 12s ease infinite;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
@@ -202,6 +220,21 @@
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 10px 30px rgba(129, 140, 248, 0.3);
       letter-spacing: -0.02em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
     }
     .btn:hover {
       transform: translateY(-6px) scale(1.03);
@@ -232,19 +265,11 @@
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
-    }
-    .skill-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(to right, var(--accent), var(--accent2));
+      transform-style: preserve-3d;
     }
     .skill-card:hover {
-      transform: translateY(-10px) rotateX(3deg);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
     .skill-card h3 {
       font-size: 1.3rem;
@@ -254,7 +279,7 @@
     }
     .tags { display: flex; flex-wrap: wrap; gap: 10px; }
     .tag {
-      background: #334155;
+      background: #242f45;
       color: #c7d2fe;
       padding: 8px 18px;
       border-radius: 50px;
@@ -267,11 +292,8 @@
       color: #0369a1;
     }
     .tag:hover {
-      background: #475569;
+      background: #334155;
       transform: scale(1.05);
-    }
-    .light-theme .tag:hover {
-      background: #dbeafe;
     }
 
     .projects-grid {
@@ -288,10 +310,11 @@
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
     }
     .project-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.3);
+      transform: translateY(-12px) rotateX(4deg) rotateY(4deg);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.35);
     }
     .project-icon {
       width: 56px;
@@ -321,7 +344,7 @@
 
     .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .tech-tag {
-      background: #334155;
+      background: #242f45;
       color: #c7d2fe;
       padding: 6px 16px;
       border-radius: 30px;
@@ -363,7 +386,7 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #334155, #475569);
+      background: linear-gradient(135deg, #242f45, #334155);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -377,10 +400,7 @@
     }
     .contact-item:hover .contact-icon {
       transform: rotate(10deg) scale(1.1);
-      background: linear-gradient(135deg, #475569, #64748b);
-    }
-    .light-theme .contact-item:hover .contact-icon {
-      background: linear-gradient(135deg, #c7d2fe, #dbeafe);
+      background: linear-gradient(135deg, #334155, #475569);
     }
 
     footer {
@@ -399,12 +419,17 @@
       .navbar { flex-direction: column; gap: 20px; }
       .nav-links { flex-wrap: wrap; justify-content: center; gap: 18px; }
       .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+      .cursor, .cursor-follower { display: none !important; }
     }
   </style>
 </head>
-<body class="dark-theme">
+<body class="dark-theme hover-target">
 
-  <nav data-aos="fade-down" data-aos-duration="1000">
+  <div id="particles-js"></div>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <nav>
     <div class="container navbar">
       <div class="logo">Bogdan Chirilă</div>
       <div class="nav-links">
@@ -424,24 +449,24 @@
   </nav>
 
   <section id="home" class="hero">
-    <h1 data-aos="fade-up" data-aos-delay="200">Crafting Digital Experiences</h1>
-    <p data-aos="fade-up" data-aos-delay="400">Dezvolt aplicații web moderne cu Python, Flask și JavaScript — cu atenție la performanță, securitate și experiență utilizator.</p>
-    <a href="#projects" class="btn" data-aos="fade-up" data-aos-delay="600">Explorează Proiectele</a>
+    <h1>Crafting Digital Experiences</h1>
+    <p>Dezvolt aplicații web moderne cu Python, Flask și JavaScript — cu atenție la performanță, securitate și experiență utilizator.</p>
+    <a href="#projects" class="btn">Explorează Proiectele</a>
   </section>
 
   <section id="about">
-    <h2 class="section-title" data-aos="fade-up">Despre Mine</h2>
-    <div class="text-content" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="section-title">Despre Mine</h2>
+    <div class="text-content">
       <p id="aboutText">
-        Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucrez independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.
+        Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.
       </p>
     </div>
   </section>
 
   <section id="skills">
-    <h2 class="section-title" data-aos="fade-up">Expertiză Tehnică</h2>
+    <h2 class="section-title">Expertiză Tehnică</h2>
     <div class="skills-grid">
-      <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+      <div class="skill-card">
         <h3>Limbaje</h3>
         <div class="tags">
           <span class="tag">Python</span>
@@ -451,7 +476,7 @@
           <span class="tag">PHP</span>
         </div>
       </div>
-      <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+      <div class="skill-card">
         <h3>Web & Frameworks</h3>
         <div class="tags">
           <span class="tag">HTML5</span>
@@ -461,7 +486,7 @@
           <span class="tag">REST APIs</span>
         </div>
       </div>
-      <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+      <div class="skill-card">
         <h3>Baze de Date & Cloud</h3>
         <div class="tags">
           <span class="tag">SQL</span>
@@ -470,7 +495,7 @@
           <span class="tag">Cloud DB</span>
         </div>
       </div>
-      <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+      <div class="skill-card">
         <h3>Dev & Tools</h3>
         <div class="tags">
           <span class="tag">Git</span>
@@ -484,9 +509,9 @@
   </section>
 
   <section id="projects">
-    <h2 class="section-title" data-aos="fade-up">Proiecte Selectate</h2>
+    <h2 class="section-title">Proiecte Selectate</h2>
     <div class="projects-grid">
-      <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="project-card">
         <div class="project-icon"><i class="fas fa-car"></i></div>
         <h3>Platformă de Închirieri Auto</h3>
         <p>O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.</p>
@@ -500,7 +525,7 @@
           <i class="fab fa-github"></i> GitHub
         </a>
       </div>
-      <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="project-card">
         <div class="project-icon"><i class="fas fa-robot"></i></div>
         <h3>Task Automator cu Python</h3>
         <p>Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web — perfect pentru productivitate personală.</p>
@@ -514,7 +539,7 @@
           <i class="fab fa-github"></i> GitHub
         </a>
       </div>
-      <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="project-card">
         <div class="project-icon"><i class="fas fa-gamepad"></i></div>
         <h3>Pygame Strategy Game</h3>
         <p>Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.</p>
@@ -528,7 +553,7 @@
           <i class="fab fa-github"></i> GitHub
         </a>
       </div>
-      <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="project-card">
         <div class="project-icon"><i class="fas fa-code-branch"></i></div>
         <h3>Hackathon API Integrator</h3>
         <p>O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, news) într-un singur dashboard.</p>
@@ -542,7 +567,7 @@
           <i class="fab fa-github"></i> GitHub
         </a>
       </div>
-      <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+      <div class="project-card">
         <div class="project-icon"><i class="fas fa-cloud"></i></div>
         <h3>Cloud Personal Dashboard</h3>
         <p>Un dashboard personal care urmărește activitatea GitHub, stocul cloud și sarcinile zilnice — cu integrare Firebase și notificări.</p>
@@ -560,40 +585,77 @@
   </section>
 
   <section id="contact">
-    <h2 class="section-title" data-aos="fade-up">Hai să Colaborăm!</h2>
+    <h2 class="section-title">Hai să Colaborăm!</h2>
     <div class="contact-info">
-      <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+      <div class="contact-item">
         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
         <a href="mailto:b.chirila@ymail.com">b.chirila@ymail.com</a>
       </div>
-      <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+      <div class="contact-item">
         <div class="contact-icon"><i class="fas fa-phone"></i></div>
         <span>+40 751 341 756</span>
       </div>
-      <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
+      <div class="contact-item">
         <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
         <span>București, România</span>
       </div>
     </div>
   </section>
 
-  <footer data-aos="fade-in">
+  <footer>
     &copy; <span id="year">2024</span> Bogdan Chirilă. Toate drepturile rezervate.
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' });
+
+    tsParticles.load("particles-js", {
+      fpsLimit: 60,
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#818cf8" },
+        shape: { type: "circle" },
+        opacity: { value: 0.15, random: true },
+        size: { value: 2, random: true },
+        move: {
+          enable: true,
+          speed: 0.8,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detectsOn: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        }
+      },
+      detectRetina: true
+    });
+    
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
+      follower.style.left = x + 'px';
+      follower.style.top = y + 'px';
+    });
 
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const icon = themeToggle.querySelector('i');
-
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.className = savedTheme + '-theme';
     icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-
     themeToggle.addEventListener('click', () => {
       const isDark = body.classList.contains('dark-theme');
       body.className = isDark ? 'light-theme' : 'dark-theme';
@@ -608,7 +670,7 @@
         heroSubtitle: "Dezvolt aplicații web moderne cu Python, Flask și JavaScript — cu atenție la performanță, securitate și experiență utilizator.",
         heroBtn: "Explorează Proiectele",
         aboutTitle: "Despre Mine",
-        aboutText: "Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucrez independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.",
+        aboutText: "Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.",
         skillsTitle: "Expertiză Tehnică",
         projectsTitle: "Proiecte Selectate",
         proj1Title: "Platformă de Închirieri Auto",
@@ -629,7 +691,7 @@
         heroSubtitle: "I build modern web applications with Python, Flask, and JavaScript — focused on performance, security, and user experience.",
         heroBtn: "Explore Projects",
         aboutTitle: "About Me",
-        aboutText: "I'm a serious, dedicated, and motivated 23-years-old passionate about IT and eager to contribute actively in a professional environment. I value seriousness, strong teamwork, and a constant drive to learn and improve. I approach every task with responsibility, attention, and full commitment. I'm sociable, communicative, and open to collaboration, yet capable of working independently when needed. I believe in doing things right, mutual respect, and consider integrity and common sense essential values in both personal and professional life.",
+        aboutText: "I'm a serious, dedicated, and motivated 23-year-old passionate about IT and eager to contribute actively in a professional environment. I value seriousness, strong teamwork, and a constant drive to learn and improve. I approach every task with responsibility, attention, and full commitment. I'm sociable, communicative, and open to collaboration, yet capable of working independently when needed. I believe in doing things right, mutual respect, and consider integrity and common sense essential values in both personal and professional life.",
         skillsTitle: "Technical Expertise",
         projectsTitle: "Selected Projects",
         proj1Title: "Car Rental Platform",
