@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Portofoliu web al lui Bogdan Chirilă – Web Developer specializat în Python, Flask, Cloud și automatizare.">
-  <meta property="og:title" content="Bogdan Chirilă — Web Developer">
-  <meta property="og:description" content="Python • Flask • Cloud • Automatizare • Hackathoane">
+  <meta name="description" content="Portofoliu al lui Bogdan Chirilă - Full-Stack Developer: aplicații web PWA, backend PHP/MySQL, automatizări Python cu OCR și integrări ERP.">
+  <meta property="og:title" content="Bogdan Chirilă - Full-Stack Developer">
+  <meta property="og:description" content="PHP • JavaScript • MySQL • Python • PWA • OCR • Integrări ERP">
   <meta property="og:type" content="website">
-  <title>Bogdan Chirilă — Web Developer</title>
+  <title>Bogdan Chirilă - Full-Stack Developer</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -157,7 +157,7 @@
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
     }
 
-    section { padding: 120px 0 100px; }
+    section { padding: 120px 0 100px; scroll-margin-top: 90px; }
     .section-title {
       text-align: center;
       font-size: 2.6rem;
@@ -572,14 +572,44 @@
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.6rem; }
-      .hero p { font-size: 1.15rem; }
-      .section-title { font-size: 2.2rem; }
-      .navbar { flex-direction: column; gap: 20px; }
-      .nav-links { flex-wrap: wrap; justify-content: center; gap: 18px; }
-      .projects-grid, .skills-grid, .interests-grid { grid-template-columns: 1fr; }
-      .stats-grid { gap: 24px; }
+      /* Bara de navigație curge normal pe telefon (nu mai acoperă conținutul) */
+      nav { position: relative; padding: 16px 0; }
+      .navbar { flex-direction: column; gap: 16px; }
+      .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px 18px; }
+      .nav-links a { padding: 6px 4px; }
+
+      section { padding: 64px 0 52px; }
+      .hero { padding-top: 32px; }
+      .hero h1 { font-size: 2.3rem; }
+      .hero p { font-size: 1.05rem; }
+      .section-title { font-size: 2rem; margin-bottom: 36px; }
+      .container { padding: 0 18px; }
+
+      .projects-grid, .skills-grid { grid-template-columns: 1fr; gap: 22px; }
+      .interests-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .skill-card, .project-card { padding: 24px; }
+      .stats-grid { gap: 22px 30px; }
+
+      /* Fără efecte 3D la atingere (arată mai curat pe telefon) */
+      .project-card:hover, .skill-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px var(--shadow);
+      }
       .cursor, .cursor-follower { display: none !important; }
+    }
+
+    @media (max-width: 480px) {
+      .logo { font-size: 1.35rem; }
+      .nav-links { gap: 8px 14px; font-size: 0.95rem; }
+      .hero { padding-top: 20px; }
+      .hero h1 { font-size: 1.95rem; }
+      .hero p { font-size: 1rem; }
+      .section-title { font-size: 1.7rem; }
+      .stat-number { font-size: 2.1rem; }
+      .btn { padding: 14px 30px; font-size: 1rem; }
+      .contact-item { font-size: 1.05rem; }
+      .contact-icon { width: 46px; height: 46px; font-size: 1.2rem; }
+      .interest-title { font-size: 0.92rem; }
     }
   </style>
 </head>
@@ -611,24 +641,24 @@
   </nav>
 
   <section id="home" class="hero">
-    <h1>Crafting Digital Experiences</h1>
-    <p>Dezvolt aplicații web moderne cu Python, Flask și JavaScript — cu atenție la performanță, securitate și experiență utilizator.</p>
+    <h1>Construiesc Experiențe Digitale</h1>
+    <p>Construiesc aplicații web și automatizări reale, folosite zilnic în producție - de la platforme PWA de depozit (PHP, JavaScript, MySQL) la sisteme desktop de procesare a facturilor cu OCR (Python). Cu accent pe performanță, fiabilitate și experiența utilizatorului.</p>
     <div class="stats-grid">
       <div class="stat-item">
         <div class="stat-number" id="langCount">0</div>
-        <div class="stat-label">Limbaje</div>
+        <div class="stat-label" id="statLangLabel">Limbaje</div>
       </div>
       <div class="stat-item">
         <div class="stat-number" id="projectCount">0</div>
-        <div class="stat-label">Proiecte</div>
+        <div class="stat-label" id="statProjLabel">Proiecte</div>
       </div>
       <div class="stat-item">
         <div class="stat-number" id="hackathonCount">0</div>
-        <div class="stat-label">Hackathoane</div>
+        <div class="stat-label" id="statModLabel">Module AMS Scan</div>
       </div>
       <div class="stat-item">
         <div class="stat-number" id="cloudCount">0</div>
-        <div class="stat-label">Cloud Tech</div>
+        <div class="stat-label" id="statIntegrLabel">Integrări API</div>
       </div>
     </div>
     <a href="#projects" class="btn">Explorează Proiectele</a>
@@ -638,7 +668,7 @@
     <h2 class="section-title">Despre Mine</h2>
     <div class="text-content">
       <p id="aboutText">
-        Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.
+        Sunt un dezvoltator full-stack de 24 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. În ultimul an am construit și menținut aplicații reale, folosite zilnic în producție: o platformă web PWA de gestiune a depozitului și un sistem desktop de automatizare a facturilor cu OCR și integrare ERP. Lucrez cu PHP, JavaScript, MySQL și Python, de la baze de date și API-uri până la interfața finală, și integrez soluții AI acolo unde aduc valoare reală. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.
       </p>
     </div>
   </section>
@@ -649,11 +679,12 @@
       <div class="skill-card">
         <h3>Limbaje</h3>
         <div class="tags">
-          <span class="tag">Python</span>
+          <span class="tag">PHP</span>
           <span class="tag">JavaScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
           <span class="tag">C++</span>
           <span class="tag">C#</span>
-          <span class="tag">PHP</span>
         </div>
       </div>
       <div class="skill-card">
@@ -661,28 +692,59 @@
         <div class="tags">
           <span class="tag">HTML5</span>
           <span class="tag">CSS3</span>
+          <span class="tag">PHP</span>
           <span class="tag">Flask</span>
-          <span class="tag">Django</span>
           <span class="tag">REST APIs</span>
+          <span class="tag">PWA</span>
+          <span class="tag">Service Workers</span>
+          <span class="tag">Web Push</span>
         </div>
       </div>
       <div class="skill-card">
-        <h3>Baze de Date & Cloud</h3>
+        <h3>Baze de Date & Integrări</h3>
         <div class="tags">
+          <span class="tag">MySQL / MariaDB</span>
           <span class="tag">SQL</span>
+          <span class="tag">ERP RVX</span>
+          <span class="tag">PrestaShop API</span>
           <span class="tag">Firebase</span>
-          <span class="tag">AWS</span>
-          <span class="tag">Cloud DB</span>
         </div>
       </div>
       <div class="skill-card">
-        <h3>Dev & Tools</h3>
+        <h3>Automatizare & Tools</h3>
         <div class="tags">
+          <span class="tag">Tkinter</span>
+          <span class="tag">OCR</span>
+          <span class="tag">pdfplumber</span>
+          <span class="tag">OpenPyXL</span>
+          <span class="tag">Scanare coduri 1D/2D</span>
           <span class="tag">Git</span>
-          <span class="tag">VS Code</span>
-          <span class="tag">Android Studio</span>
-          <span class="tag">Pygame</span>
           <span class="tag">OOP</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Marketing Digital & SEO</h3>
+        <div class="tags">
+          <span class="tag">SEO</span>
+          <span class="tag">Google Ads</span>
+          <span class="tag">Google Analytics</span>
+          <span class="tag">Search Console</span>
+          <span class="tag">Google Merchant</span>
+          <span class="tag">Feed-uri de produse</span>
+          <span class="tag">Listare produse</span>
+          <span class="tag">Foto produs</span>
+          <span class="tag">Reclamă online</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>AI & Dezvoltare Asistată</h3>
+        <div class="tags">
+          <span class="tag">Integrare AI / LLM</span>
+          <span class="tag">API Claude</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">Dezvoltare asistată de AI</span>
+          <span class="tag">Extragere date cu AI (OCR/PDF)</span>
+          <span class="tag">Automatizare cu AI</span>
         </div>
       </div>
     </div>
@@ -690,29 +752,29 @@
     <h3 style="text-align:center; margin:40px 0 20px; font-weight:700;">Niveluri de Competență</h3>
     <div class="container" style="max-width:700px;">
       <div class="level-item">
+        <div class="level-name">PHP</div>
+        <div class="level-bar"><div class="level-fill" style="width:92%"></div></div>
+        <div class="level-badge">Avansat</div>
+      </div>
+      <div class="level-item">
+        <div class="level-name">JavaScript</div>
+        <div class="level-bar"><div class="level-fill" style="width:88%"></div></div>
+        <div class="level-badge">Avansat</div>
+      </div>
+      <div class="level-item">
         <div class="level-name">Python</div>
         <div class="level-bar"><div class="level-fill" style="width:90%"></div></div>
         <div class="level-badge">Avansat</div>
       </div>
       <div class="level-item">
-        <div class="level-name">Flask</div>
-        <div class="level-bar"><div class="level-fill" style="width:95%"></div></div>
-        <div class="level-badge">Expert</div>
-      </div>
-      <div class="level-item">
-        <div class="level-name">JavaScript</div>
+        <div class="level-name">MySQL</div>
         <div class="level-bar"><div class="level-fill" style="width:85%"></div></div>
         <div class="level-badge">Avansat</div>
       </div>
       <div class="level-item">
-        <div class="level-name">SQL</div>
-        <div class="level-bar"><div class="level-fill" style="width:80%"></div></div>
-        <div class="level-badge">Intermediar+</div>
-      </div>
-      <div class="level-item">
-        <div class="level-name">Cloud</div>
-        <div class="level-bar"><div class="level-fill" style="width:75%"></div></div>
-        <div class="level-badge">Intermediar</div>
+        <div class="level-name">PWA / API</div>
+        <div class="level-bar"><div class="level-fill" style="width:82%"></div></div>
+        <div class="level-badge">Avansat</div>
       </div>
     </div>
   </section>
@@ -722,7 +784,15 @@
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-date">2022 – 2025</div>
+          <div class="timeline-date">2025 - Prezent · 1 an</div>
+          <div class="timeline-title">Full-Stack Developer & eCommerce · ATV Moto Shop</div>
+          <div class="timeline-text">Dezvolt și mențin aplicațiile interne folosite zilnic de echipa din depozit: platforma web PWA <em>AMS Scan</em> (PHP, JavaScript, MySQL) și sistemul de automatizare a facturilor cu OCR (Python). Integrări cu ERP-ul RVX și PrestaShop, scanare de coduri, sincronizare în timp real și tipărire de etichete. Mă ocup și de prezența online a magazinului: listarea și optimizarea produselor, fotografie de produs, reclamă, SEO, Google Ads, Analytics, Search Console și Merchant Center, plus integrarea și crearea de feed-uri de produse și lucrul cu API-uri pentru sincronizarea catalogului. Folosesc AI în procesul de dezvoltare și am implementat funcții cu integrare AI direct în aplicații (ex. extragerea datelor din facturi scanate cu Claude API).</div>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2022 - 2025</div>
           <div class="timeline-title">Facultatea Spiru Haret</div>
           <div class="timeline-text">Inginerie și Informatică. Lucrare de diplomă: <em>Implementarea unei platforme web de închirieri auto folosind o bază de date în cloud</em>.</div>
         </div>
@@ -730,15 +800,15 @@
       </div>
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-date">2022 – 2024</div>
+          <div class="timeline-date">2022 - 2024</div>
           <div class="timeline-title">KLF Logistica</div>
-          <div class="timeline-text">Tehnician aparate de cafea și snack – muncă serioasă, responsabilă, într-un mediu profesional.</div>
+          <div class="timeline-text">Tehnician aparate de cafea și snack - muncă serioasă, responsabilă, într-un mediu profesional.</div>
         </div>
         <div class="timeline-dot"></div>
       </div>
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-date">2017 – 2021</div>
+          <div class="timeline-date">2017 - 2021</div>
           <div class="timeline-title">Colegiul Tehnic Petru Maior</div>
           <div class="timeline-text">Bacalaureat, profil real. Atestat în informatică.</div>
         </div>
@@ -774,12 +844,81 @@
         <div class="interest-icon"><i class="fas fa-futbol"></i></div>
         <div class="interest-title">Fotbal</div>
       </div>
+      <div class="interest-card">
+        <div class="interest-icon"><i class="fas fa-camera"></i></div>
+        <div class="interest-title">Fotografie</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon"><i class="fas fa-motorcycle"></i></div>
+        <div class="interest-title">Motociclete & ATV</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon"><i class="fas fa-microchip"></i></div>
+        <div class="interest-title">Tehnologie & Gadgeturi</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon"><i class="fas fa-robot"></i></div>
+        <div class="interest-title">Automatizări & DIY</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon"><i class="fas fa-book-open"></i></div>
+        <div class="interest-title">Învățare Continuă</div>
+      </div>
     </div>
   </section>
 
   <section id="projects">
     <h2 class="section-title">Proiecte Selectate</h2>
     <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-barcode"></i></div>
+        <h3>AMS Scan - Platformă WMS de Depozit (PWA)</h3>
+        <p>Aplicație web PWA folosită zilnic în producție la ATV Moto Shop pentru gestionarea depozitului. 13 module (livrări, recepție, retururi, inventar, verificare produs, schimbare locație, verificare comenzi) cu scanare de coduri prin camera telefonului (1D/2D), sincronizare în timp real între operatori, notificări Web Push, tipărire automată de etichete pe imprimante Zebra printr-un agent Python, generare AWB pentru curieri (GLS, Sameday, Fan, DPD, UPS) și integrare cu ERP-ul RVX și PrestaShop. Peste 56 de fișiere PHP, backend MySQL, complet mobile-first, cu autentificare multi-user și permisiuni pe module.</p>
+        <div class="project-tech">
+          <span class="tech-tag">PHP 8</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">PWA</span>
+          <span class="tech-tag">REST API</span>
+        </div>
+        <a href="https://scan.atvmotoshop.com" target="_blank" class="project-link">
+          <i class="fas fa-globe"></i> Live: scan.atvmotoshop.com
+        </a>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-file-invoice"></i></div>
+        <h3>Automatizare Facturi - OCR & Integrare ERP</h3>
+        <p>Aplicație desktop (Python + Tkinter) care procesează automat facturile PDF de la furnizori internaționali (CFMOTO, ASP, MOTORIDER). Extrage produsele din PDF-uri native sau scanate folosind OCR Windows cu corecție de erori bazată pe constrângeri (~70-80% recuperare) și un fallback pe AI (Claude API) pentru facturile scanate dificile. Reconciliază prețurile din mai multe surse (feed-uri web + ERP RVX), calculează marje și adaosuri prin formule Excel și generează template-uri de import. ~4.000 linii Python, caching inteligent (TTL 24h), procesare pe fire de execuție și interfață proprie cu temă dark.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Tkinter</span>
+          <span class="tech-tag">OCR</span>
+          <span class="tech-tag">AI / Claude API</span>
+          <span class="tech-tag">pdfplumber</span>
+          <span class="tech-tag">OpenPyXL</span>
+          <span class="tech-tag">REST API</span>
+        </div>
+        <a href="#contact" class="project-link">
+          <i class="fas fa-circle-info"></i> Aplicație internă - detalii la cerere
+        </a>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3>eCommerce, SEO & Marketing Digital</h3>
+        <p>La ATV Moto Shop mă ocup de prezența online a magazinului: listarea și optimizarea produselor, fotografie de produs, conținut și campanii de reclamă. Lucrez cu Google Ads, Google Analytics, Search Console și Google Merchant Center pentru SEO și pentru performanța campaniilor. Am integrat și am creat feed-uri de produse (import/export) și folosesc API-uri pentru sincronizarea catalogului între platforme, astfel încât prețurile, stocurile și descrierile să fie mereu actualizate.</p>
+        <div class="project-tech">
+          <span class="tech-tag">SEO</span>
+          <span class="tech-tag">Google Ads</span>
+          <span class="tech-tag">Analytics</span>
+          <span class="tech-tag">Search Console</span>
+          <span class="tech-tag">Feed-uri produse</span>
+          <span class="tech-tag">API</span>
+        </div>
+        <a href="#contact" class="project-link">
+          <i class="fas fa-circle-info"></i> Detalii la cerere
+        </a>
+      </div>
       <div class="project-card">
         <div class="project-icon"><i class="fas fa-car"></i></div>
         <h3>Platformă de Închirieri Auto</h3>
@@ -796,8 +935,8 @@
       </div>
       <div class="project-card">
         <div class="project-icon"><i class="fas fa-robot"></i></div>
-        <h3>Task Automator cu Python</h3>
-        <p>Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web — perfect pentru productivitate personală.</p>
+        <h3>Automatizare de Sarcini în Python</h3>
+        <p>Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web - perfect pentru productivitate personală.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
           <span class="tech-tag">Selenium</span>
@@ -810,7 +949,7 @@
       </div>
       <div class="project-card">
         <div class="project-icon"><i class="fas fa-gamepad"></i></div>
-        <h3>Pygame Strategy Game</h3>
+        <h3>Joc de Strategie în Pygame</h3>
         <p>Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
@@ -824,7 +963,7 @@
       </div>
       <div class="project-card">
         <div class="project-icon"><i class="fas fa-code-branch"></i></div>
-        <h3>Hackathon API Integrator</h3>
+        <h3>Integrator de API-uri (Hackathon)</h3>
         <p>O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, news) într-un singur dashboard.</p>
         <div class="project-tech">
           <span class="tech-tag">JavaScript</span>
@@ -838,8 +977,8 @@
       </div>
       <div class="project-card">
         <div class="project-icon"><i class="fas fa-cloud"></i></div>
-        <h3>Cloud Personal Dashboard</h3>
-        <p>Un dashboard personal care urmărește activitatea GitHub, stocul cloud și sarcinile zilnice — cu integrare Firebase și notificări.</p>
+        <h3>Panou Personal în Cloud</h3>
+        <p>Un panou personal care urmărește activitatea GitHub, stocarea în cloud și sarcinile zilnice - cu integrare Firebase și notificări.</p>
         <div class="project-tech">
           <span class="tech-tag">Flask</span>
           <span class="tech-tag">Firebase</span>
@@ -856,18 +995,18 @@
   <section id="contact">
     <h2 class="section-title">Hai să Colaborăm!</h2>
     <div class="contact-info">
-      <div class="contact-item">
+      <a class="contact-item" href="mailto:b.chirila@ymail.com" aria-label="Trimite email">
         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-        <a href="mailto:b.chirila@ymail.com">b.chirila@ymail.com</a>
-      </div>
-      <div class="contact-item">
+        <span>b.chirila@ymail.com</span>
+      </a>
+      <a class="contact-item" href="tel:+40751341756" aria-label="Sună acum">
         <div class="contact-icon"><i class="fas fa-phone"></i></div>
         <span>+40 751 341 756</span>
-      </div>
-      <div class="contact-item">
+      </a>
+      <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Bucure%C8%99ti%2C+Rom%C3%A2nia" target="_blank" rel="noopener" aria-label="Vezi pe hartă">
         <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
         <span>București, România</span>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -948,10 +1087,10 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          animateValue('langCount', 0, 5, 1500);
-          animateValue('projectCount', 0, 10, 1500);
-          animateValue('hackathonCount', 0, 3, 1500);
-          animateValue('cloudCount', 0, 2, 1500);
+          animateValue('langCount', 0, 6, 1500);
+          animateValue('projectCount', 0, 8, 1500);
+          animateValue('hackathonCount', 0, 13, 1500);
+          animateValue('cloudCount', 0, 5, 1500);
           observer.disconnect();
         }
       });
@@ -961,48 +1100,62 @@
     const translations = {
       ro: {
         home: "Acasă", about: "Despre", skills: "Competențe", timeline: "Educație", projects: "Proiecte", interests: "Interese", contact: "Contact",
-        heroTitle: "Crafting Digital Experiences",
-        heroSubtitle: "Dezvolt aplicații web moderne cu Python, Flask și JavaScript — cu atenție la performanță, securitate și experiență utilizator.",
+        heroTitle: "Construiesc Experiențe Digitale",
+        heroSubtitle: "Construiesc aplicații web și automatizări reale, folosite zilnic în producție - de la platforme PWA de depozit (PHP, JavaScript, MySQL) la sisteme desktop de procesare a facturilor cu OCR (Python). Cu accent pe performanță, fiabilitate și experiența utilizatorului.",
         heroBtn: "Explorează Proiectele",
+        statLang: "Limbaje", statProj: "Proiecte", statMod: "Module AMS Scan", statIntegr: "Integrări API",
         aboutTitle: "Despre Mine",
-        aboutText: "Sunt un tânăr serios, dedicat și motivat, cu vârsta de 23 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Am o atitudine responsabilă față de muncă și tratez fiecare sarcină cu atenție și implicare. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Îmi place să lucrez corect, să respect și să fiu respectat, și consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.",
+        aboutText: "Sunt un dezvoltator full-stack de 24 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. În ultimul an am construit și menținut aplicații reale, folosite zilnic în producție: o platformă web PWA de gestiune a depozitului și un sistem desktop de automatizare a facturilor cu OCR și integrare ERP. Lucrez cu PHP, JavaScript, MySQL și Python, de la baze de date și API-uri până la interfața finală, și integrez soluții AI acolo unde aduc valoare reală. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.",
         skillsTitle: "Expertiză Tehnică",
         timelineTitle: "Educație & Experiență",
         interestsTitle: "Hobby-uri & Interese",
         projectsTitle: "Proiecte Selectate",
-        proj1Title: "Platformă de Închirieri Auto",
-        proj1Desc: "O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.",
-        proj2Title: "Task Automator cu Python",
-        proj2Desc: "Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web — perfect pentru productivitate personală.",
-        proj3Title: "Pygame Strategy Game",
-        proj3Desc: "Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.",
-        proj4Title: "Hackathon API Integrator",
-        proj4Desc: "O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, news) într-un singur dashboard.",
-        proj5Title: "Cloud Personal Dashboard",
-        proj5Desc: "Un dashboard personal care urmărește activitatea GitHub, stocul cloud și sarcinile zilnice — cu integrare Firebase și notificări.",
+        proj1Title: "AMS Scan - Platformă WMS de Depozit (PWA)",
+        proj1Desc: "Aplicație web PWA folosită zilnic în producție la ATV Moto Shop pentru gestionarea depozitului. 13 module (livrări, recepție, retururi, inventar, verificare produs, schimbare locație, verificare comenzi) cu scanare de coduri prin camera telefonului (1D/2D), sincronizare în timp real între operatori, notificări Web Push, tipărire automată de etichete pe imprimante Zebra printr-un agent Python, generare AWB pentru curieri (GLS, Sameday, Fan, DPD, UPS) și integrare cu ERP-ul RVX și PrestaShop. Peste 56 de fișiere PHP, backend MySQL, complet mobile-first, cu autentificare multi-user și permisiuni pe module.",
+        proj2Title: "Automatizare Facturi - OCR & Integrare ERP",
+        proj2Desc: "Aplicație desktop (Python + Tkinter) care procesează automat facturile PDF de la furnizori internaționali (CFMOTO, ASP, MOTORIDER). Extrage produsele din PDF-uri native sau scanate folosind OCR Windows cu corecție de erori bazată pe constrângeri (~70-80% recuperare) și un fallback pe AI (Claude API) pentru facturile scanate dificile. Reconciliază prețurile din mai multe surse (feed-uri web + ERP RVX), calculează marje și adaosuri prin formule Excel și generează template-uri de import. ~4.000 linii Python, caching inteligent (TTL 24h), procesare pe fire de execuție și interfață proprie cu temă dark.",
+        proj8Title: "eCommerce, SEO & Marketing Digital",
+        proj8Desc: "La ATV Moto Shop mă ocup de prezența online a magazinului: listarea și optimizarea produselor, fotografie de produs, conținut și campanii de reclamă. Lucrez cu Google Ads, Google Analytics, Search Console și Google Merchant Center pentru SEO și pentru performanța campaniilor. Am integrat și am creat feed-uri de produse (import/export) și folosesc API-uri pentru sincronizarea catalogului între platforme, astfel încât prețurile, stocurile și descrierile să fie mereu actualizate.",
+        proj3Title: "Platformă de Închirieri Auto",
+        proj3Desc: "O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.",
+        proj4Title: "Automatizare de Sarcini în Python",
+        proj4Desc: "Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web - perfect pentru productivitate personală.",
+        proj5Title: "Joc de Strategie în Pygame",
+        proj5Desc: "Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.",
+        proj6Title: "Integrator de API-uri (Hackathon)",
+        proj6Desc: "O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, știri) într-un singur panou.",
+        proj7Title: "Panou Personal în Cloud",
+        proj7Desc: "Un panou personal care urmărește activitatea GitHub, stocarea în cloud și sarcinile zilnice - cu integrare Firebase și notificări.",
         contactTitle: "Hai să Colaborăm!"
       },
       en: {
         home: "Home", about: "About", skills: "Skills", timeline: "Education", projects: "Projects", interests: "Interests", contact: "Contact",
         heroTitle: "Crafting Digital Experiences",
-        heroSubtitle: "I build modern web applications with Python, Flask, and JavaScript — focused on performance, security, and user experience.",
+        heroSubtitle: "I build real web apps and automations used daily in production - from warehouse PWA platforms (PHP, JavaScript, MySQL) to desktop invoice-processing systems with OCR (Python). Focused on performance, reliability, and user experience.",
         heroBtn: "Explore Projects",
+        statLang: "Languages", statProj: "Projects", statMod: "AMS Scan Modules", statIntegr: "API Integrations",
         aboutTitle: "About Me",
-        aboutText: "I'm a serious, dedicated, and motivated 23-years-old passionate about IT and eager to contribute actively in a professional environment. I value seriousness, strong teamwork, and a constant drive to learn and improve. I approach every task with responsibility, attention, and full commitment. I'm sociable, communicative, and open to collaboration, yet capable of working independently when needed. I believe in doing things right, mutual respect, and consider integrity and common sense essential values in both personal and professional life.",
+        aboutText: "I'm a 24-year-old full-stack developer passionate about IT and eager to contribute actively in a professional environment. Over the past year I have built and maintained real applications used daily in production: a warehouse-management PWA and a desktop invoice-automation system with OCR and ERP integration. I work with PHP, JavaScript, MySQL, and Python - from databases and APIs to the final UI - and integrate AI solutions wherever they add real value. I value seriousness, strong teamwork, and a constant drive to learn and improve. I'm sociable, communicative, and open to collaboration, yet capable of working independently when needed. I consider integrity and common sense essential values in both personal and professional life.",
         skillsTitle: "Technical Expertise",
         timelineTitle: "Education & Experience",
         interestsTitle: "Hobbies & Interests",
         projectsTitle: "Selected Projects",
-        proj1Title: "Car Rental Platform",
-        proj1Desc: "A web application for managing car rentals with cloud integration and relational databases. My bachelor's thesis at Spiru Haret University.",
-        proj2Title: "Python Task Automator",
-        proj2Desc: "An advanced automation script that organizes files, sends scheduled emails, and scrapes web data — perfect for personal productivity.",
-        proj3Title: "Pygame Strategy Game",
-        proj3Desc: "A 2D strategy game built with Python and Pygame, inspired by my passion for strategic and collaborative online games.",
-        proj4Title: "Hackathon API Integrator",
-        proj4Desc: "A rapid prototype built during a hackathon that integrates multiple APIs (weather, crypto, news) into a unified dashboard.",
-        proj5Title: "Cloud Personal Dashboard",
-        proj5Desc: "A personal dashboard tracking GitHub activity, cloud storage, and daily tasks — with Firebase integration and notifications.",
+        proj1Title: "AMS Scan - Warehouse WMS Platform (PWA)",
+        proj1Desc: "A PWA web app used daily in production at ATV Moto Shop to run the warehouse. 13 modules (deliveries, receiving, returns, inventory, product check, relocation, order verification) with phone-camera barcode scanning (1D/2D), real-time sync between operators, Web Push notifications, automatic label printing on Zebra printers via a Python agent, courier AWB generation (GLS, Sameday, Fan, DPD, UPS), and integration with the RVX ERP and PrestaShop. Over 56 PHP files, MySQL backend, fully mobile-first, with multi-user auth and per-module permissions.",
+        proj2Title: "Invoice Automation - OCR & ERP Integration",
+        proj2Desc: "A desktop app (Python + Tkinter) that automatically processes supplier PDF invoices from international vendors (CFMOTO, ASP, MOTORIDER). It extracts line items from native or scanned PDFs using Windows OCR with constraint-based error correction (~70-80% recovery) and an AI fallback (Claude API) for tricky scanned invoices. It reconciles prices across multiple sources (web feeds + RVX ERP), computes margins via Excel formulas, and generates import templates. ~4,000 lines of Python, smart 24h caching, threaded processing, and a custom dark-themed UI.",
+        proj8Title: "eCommerce, SEO & Digital Marketing",
+        proj8Desc: "At ATV Moto Shop I manage the store's online presence: product listing and optimization, product photography, content, and advertising campaigns. I work with Google Ads, Google Analytics, Search Console, and Google Merchant Center for SEO and campaign performance. I have integrated and built product feeds (import/export) and use APIs to sync the catalog across platforms, keeping prices, stock, and descriptions always up to date.",
+        proj3Title: "Car Rental Platform",
+        proj3Desc: "A web application for managing car rentals with cloud integration and relational databases. My bachelor's thesis at Spiru Haret University.",
+        proj4Title: "Python Task Automator",
+        proj4Desc: "An advanced automation script that organizes files, sends scheduled emails, and scrapes web data - perfect for personal productivity.",
+        proj5Title: "Pygame Strategy Game",
+        proj5Desc: "A 2D strategy game built with Python and Pygame, inspired by my passion for strategic and collaborative online games.",
+        proj6Title: "Hackathon API Integrator",
+        proj6Desc: "A rapid prototype built during a hackathon that integrates multiple APIs (weather, crypto, news) into a unified dashboard.",
+        proj7Title: "Cloud Personal Dashboard",
+        proj7Desc: "A personal dashboard tracking GitHub activity, cloud storage, and daily tasks - with Firebase integration and notifications.",
         contactTitle: "Let's Collaborate!"
       }
     };
@@ -1024,15 +1177,24 @@
       document.querySelector('#projects .section-title').textContent = translations[lang].projectsTitle;
       document.querySelector('#contact .section-title').textContent = translations[lang].contactTitle;
 
+      document.getElementById('statLangLabel').textContent = translations[lang].statLang;
+      document.getElementById('statProjLabel').textContent = translations[lang].statProj;
+      document.getElementById('statModLabel').textContent = translations[lang].statMod;
+      document.getElementById('statIntegrLabel').textContent = translations[lang].statIntegr;
+
       const projCards = document.querySelectorAll('.project-card');
       const projData = [
         ['proj1Title', 'proj1Desc'],
         ['proj2Title', 'proj2Desc'],
+        ['proj8Title', 'proj8Desc'],
         ['proj3Title', 'proj3Desc'],
         ['proj4Title', 'proj4Desc'],
-        ['proj5Title', 'proj5Desc']
+        ['proj5Title', 'proj5Desc'],
+        ['proj6Title', 'proj6Desc'],
+        ['proj7Title', 'proj7Desc']
       ];
       projData.forEach((keys, i) => {
+        if (!projCards[i]) return;
         projCards[i].querySelector('h3').textContent = translations[lang][keys[0]];
         projCards[i].querySelector('p').textContent = translations[lang][keys[1]];
       });
