@@ -3,1213 +3,982 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Portofoliu al lui Bogdan Chirilă - Full-Stack Developer: aplicații web PWA, backend PHP/MySQL, automatizări Python cu OCR și integrări ERP.">
-  <meta property="og:title" content="Bogdan Chirilă - Full-Stack Developer">
-  <meta property="og:description" content="PHP • JavaScript • MySQL • Python • PWA • OCR • Integrări ERP">
+  <meta name="description" content="Portofoliu al lui Bogdan Chirila - Full-Stack Developer: aplicatii web PWA, backend PHP/MySQL, automatizari Python cu OCR si integrari ERP.">
+  <meta property="og:title" content="Bogdan Chirila - Full-Stack Developer">
+  <meta property="og:description" content="PHP - JavaScript - MySQL - Python - PWA - OCR - Integrari ERP">
   <meta property="og:type" content="website">
-  <title>Bogdan Chirilă - Full-Stack Developer</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+  <meta name="theme-color" content="#16161e">
+  <title>Bogdan Chirila - Full-Stack Developer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128421;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
     :root {
-      --bg: #0b0f19;
-      --text: #f1f5f9;
-      --accent: #818cf8;
-      --accent2: #c084fc;
-      --card: #121826;
-      --shadow: rgba(0, 0, 0, 0.5);
-      --border: #242f45;
+      --bg:        #1a1b26;
+      --bg-2:      #16161e;
+      --surface:   #1f2335;
+      --surface-2: #232741;
+      --text:      #c0caf5;
+      --text-hi:   #e6eaff;
+      --muted:     #7982a9;
+      --border:    #2a2f45;
+      --blue:      #7aa2f7;
+      --purple:    #bb9af7;
+      --teal:      #2ac3de;
+      --green:     #9ece6a;
+      --orange:    #ff9e64;
+      --pink:      #f7768e;
+      --glow:      rgba(122,162,247,.35);
+      --shadow:    rgba(0,0,0,.45);
     }
-    .light-theme {
-      --bg: #ffffff;
-      --text: #0f172a;
-      --card: #f8fafc;
-      --shadow: rgba(0, 0, 0, 0.08);
-      --border: #e2e8f0;
+    html.light {
+      --bg:        #f6f7fb;
+      --bg-2:      #eef0f7;
+      --surface:   #ffffff;
+      --surface-2: #f0f2fa;
+      --text:      #343b58;
+      --text-hi:   #1a1b26;
+      --muted:     #6b7394;
+      --border:    #e0e3ef;
+      --blue:      #3d59d1;
+      --purple:    #8c4bd6;
+      --teal:      #158fa6;
+      --green:     #4c8a2b;
+      --orange:    #c26a25;
+      --pink:      #d63a58;
+      --glow:      rgba(61,89,209,.18);
+      --shadow:    rgba(20,30,80,.08);
     }
+
+    html { scroll-behavior:smooth; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      position: relative;
+      font-family:'Inter',system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      transition:background .4s ease,color .4s ease;
     }
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
+    /* fundal: grila subtila + doua halouri de lumina, doar CSS (fara librarii) */
+    body::before {
+      content:'';
+      position:fixed; inset:0; z-index:-2;
+      background:
+        radial-gradient(600px circle at 12% 8%, var(--glow), transparent 45%),
+        radial-gradient(700px circle at 88% 92%, rgba(187,154,247,.16), transparent 45%);
+      pointer-events:none;
     }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transition: transform 0.1s ease;
-    }
-    .cursor-follower {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(129, 140, 248, 0.3);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 9998;
-      transition: transform 0.3s ease, width 0.3s, height 0.3s;
-    }
-    .hover-target {
-      cursor: none !important;
-    }
-    .hover-target:hover ~ .cursor {
-      transform: translate(-50%, -50%) scale(2.5);
-      background: rgba(129, 140, 248, 0.1);
-    }
-    .hover-target:hover ~ .cursor-follower {
-      transform: translate(-50%, -50%) scale(1.8);
-      border-color: rgba(129, 140, 248, 0.6);
+    body::after {
+      content:'';
+      position:fixed; inset:0; z-index:-2;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size:52px 52px;
+      opacity:.14;
+      mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%);
+      -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%);
+      pointer-events:none;
     }
 
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 20px 0;
-      backdrop-filter: blur(16px);
-      background: rgba(11, 15, 25, 0.85);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-    }
-    .light-theme nav {
-      background: rgba(255, 255, 255, 0.85);
-    }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-links a {
-      font-weight: 600;
-      position: relative;
-      padding: 4px 0;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-    .nav-links a:hover::after { width: 100%; }
+    a { color:inherit; text-decoration:none; }
+    ::selection { background:var(--blue); color:#fff; }
+    .container { max-width:1120px; margin:0 auto; padding:0 24px; }
+    .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
 
-    .controls {
-      display: flex;
-      gap: 12px;
-      align-items: center;
+    /* eticheta de sectiune, stil comentariu de cod */
+    .kicker {
+      font-family:'JetBrains Mono',monospace;
+      font-size:.82rem; font-weight:600;
+      color:var(--blue);
+      letter-spacing:.02em;
+      display:inline-flex; align-items:center; gap:8px;
+      margin-bottom:14px;
     }
-    .lang-toggle, .theme-toggle {
-      background: linear-gradient(135deg, #121826, #242f45);
-      color: #c7d2fe;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    .light-theme .lang-toggle,
-    .light-theme .theme-toggle {
-      background: linear-gradient(135deg, #e0f2fe, #dbeafe);
-      color: #0c4a6e;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-    }
-    .lang-toggle:hover, .theme-toggle:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    }
+    .kicker::before { content:'//'; color:var(--purple); }
 
-    section { padding: 120px 0 100px; scroll-margin-top: 90px; }
     .section-title {
-      text-align: center;
-      font-size: 2.6rem;
-      font-weight: 800;
-      margin-bottom: 50px;
-      background: linear-gradient(120deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
+      font-size:clamp(1.7rem,4vw,2.4rem);
+      font-weight:800; color:var(--text-hi);
+      letter-spacing:-.02em; line-height:1.15;
+      margin-bottom:14px;
     }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 56px;
-      height: 3px;
-      background: linear-gradient(to right, var(--accent), var(--accent2));
-      border-radius: 2px;
+    .section-lead {
+      color:var(--muted); max-width:640px; font-size:1.02rem; margin-bottom:44px;
     }
 
-    .hero {
-      text-align: center;
-      padding-top: 160px;
-      position: relative;
+    section { padding:104px 0; scroll-margin-top:80px; }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      background:color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom:1px solid transparent;
+      transition:border-color .3s ease, background .3s ease;
+    }
+    nav.scrolled { border-bottom-color:var(--border); }
+    .navbar { display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .logo {
+      font-family:'JetBrains Mono',monospace; font-weight:700; font-size:1rem;
+      color:var(--text-hi); display:flex; align-items:center; gap:8px;
+    }
+    .logo .dot { color:var(--green); }
+    .logo b { color:var(--blue); font-weight:700; }
+    .nav-links { display:flex; gap:4px; }
+    .nav-links a {
+      font-family:'JetBrains Mono',monospace; font-size:.85rem; font-weight:500;
+      color:var(--muted); padding:8px 12px; border-radius:9px;
+      transition:color .2s, background .2s;
+    }
+    .nav-links a:hover { color:var(--text-hi); background:var(--surface); }
+    .nav-links a.active { color:var(--blue); }
+    .controls { display:flex; gap:8px; }
+    .ctrl-btn {
+      font-family:'JetBrains Mono',monospace; font-size:.82rem; font-weight:600;
+      background:var(--surface); color:var(--text);
+      border:1px solid var(--border); border-radius:9px;
+      height:38px; min-width:44px; padding:0 12px; cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center; gap:6px;
+      transition:border-color .2s, color .2s, transform .1s;
+    }
+    .ctrl-btn:hover { border-color:var(--blue); color:var(--text-hi); }
+    .ctrl-btn:active { transform:scale(.95); }
+
+    /* ---------- HERO ---------- */
+    .hero { padding-top:150px; padding-bottom:80px; }
+    .hero-grid {
+      display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:center;
+    }
+    .avail {
+      display:inline-flex; align-items:center; gap:9px;
+      font-family:'JetBrains Mono',monospace; font-size:.8rem; font-weight:600;
+      color:var(--green);
+      background:color-mix(in srgb, var(--green) 12%, transparent);
+      border:1px solid color-mix(in srgb, var(--green) 34%, transparent);
+      padding:6px 14px; border-radius:50px; margin-bottom:26px;
+    }
+    .avail .pulse {
+      width:8px; height:8px; border-radius:50%; background:var(--green);
+      box-shadow:0 0 0 0 var(--green); animation:pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--green) 70%, transparent);}
+      70%{ box-shadow:0 0 0 8px transparent;}
+      100%{ box-shadow:0 0 0 0 transparent;}
     }
     .hero h1 {
-      font-size: 3.6rem;
-      font-weight: 900;
-      margin-bottom: 20px;
-      line-height: 1.1;
-      background: linear-gradient(120deg, var(--accent), var(--accent2), #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 300% 300%;
-      animation: gradientBG 12s ease infinite;
+      font-size:clamp(2.4rem,6vw,4rem); font-weight:900;
+      letter-spacing:-.03em; line-height:1.04; color:var(--text-hi);
+      margin-bottom:18px;
     }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .hero h1 .grad {
+      background:linear-gradient(115deg,var(--blue),var(--purple),var(--teal));
+      background-size:200% auto; -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; animation:shimmer 8s linear infinite;
     }
-    .hero p {
-      font-size: 1.3rem;
-      color: #cbd5e1;
-      max-width: 700px;
-      margin: 0 auto 36px;
-      font-weight: 400;
+    @keyframes shimmer { to { background-position:200% center; } }
+    .hero .role {
+      font-family:'JetBrains Mono',monospace; font-size:1.05rem; font-weight:600;
+      color:var(--blue); margin-bottom:20px;
     }
-    .light-theme .hero p { color: #334155; }
-
-    .stats-grid {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin: 50px auto;
-      flex-wrap: wrap;
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-number {
-      font-size: 2.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-label {
-      font-size: 0.95rem;
-      color: #94a3b8;
-      margin-top: 8px;
-    }
-    .light-theme .stat-label { color: #64748b; }
-
+    .hero .lead { color:var(--muted); font-size:1.08rem; max-width:520px; margin-bottom:32px; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:14px; }
     .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: white;
-      padding: 16px 40px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 30px rgba(129, 140, 248, 0.3);
-      letter-spacing: -0.02em;
-      position: relative;
-      overflow: hidden;
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:700; font-size:1rem; padding:13px 26px; border-radius:12px;
+      cursor:pointer; border:1px solid transparent; transition:transform .18s, box-shadow .25s, background .25s;
     }
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
+    .btn-primary {
+      background:linear-gradient(120deg,var(--blue),var(--purple));
+      color:#fff; box-shadow:0 8px 24px var(--glow);
     }
-    .btn:hover::before {
-      left: 100%;
-    }
-    .btn:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 14px 40px rgba(129, 140, 248, 0.45);
-    }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 34px var(--glow); }
+    .btn-ghost { background:var(--surface); color:var(--text-hi); border-color:var(--border); }
+    .btn-ghost:hover { border-color:var(--blue); transform:translateY(-3px); }
 
-    .text-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      line-height: 1.8;
+    /* terminal card */
+    .terminal {
+      background:var(--bg-2); border:1px solid var(--border); border-radius:14px;
+      box-shadow:0 30px 60px -20px var(--shadow); overflow:hidden;
+      font-family:'JetBrains Mono',monospace;
     }
-    .light-theme .text-content { color: #334155; }
+    .term-bar {
+      display:flex; align-items:center; gap:8px;
+      padding:12px 16px; background:var(--surface); border-bottom:1px solid var(--border);
+    }
+    .term-bar .tb { width:12px; height:12px; border-radius:50%; }
+    .tb.r{ background:#ff5f56;} .tb.y{ background:#ffbd2e;} .tb.g{ background:#27c93f;}
+    .term-bar .tt { margin-left:8px; font-size:.78rem; color:var(--muted); }
+    .term-body { padding:20px; font-size:.9rem; line-height:1.85; min-height:230px; }
+    .term-body .ln { white-space:pre-wrap; word-break:break-word; }
+    .term-body .pr { color:var(--green); }
+    .term-body .fl { color:var(--purple); }
+    .term-body .cm { color:var(--muted); }
+    .term-body .ok { color:var(--green); }
+    .term-body .st { color:var(--teal); }
+    .caret { display:inline-block; width:8px; height:1.05em; background:var(--blue); vertical-align:-2px; animation:blink 1s steps(1) infinite; }
+    @keyframes blink { 50%{ opacity:0; } }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 36px;
-      margin-top: 30px;
+    /* ---------- STATS ---------- */
+    .stats {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:56px;
     }
+    .stat {
+      background:var(--surface); border:1px solid var(--border); border-radius:14px;
+      padding:22px; text-align:center; transition:border-color .25s, transform .25s;
+    }
+    .stat:hover { border-color:var(--blue); transform:translateY(-4px); }
+    .stat .num {
+      font-family:'JetBrains Mono',monospace; font-size:2.2rem; font-weight:700;
+      color:var(--text-hi); line-height:1;
+    }
+    .stat .num span { color:var(--blue); }
+    .stat .lbl { color:var(--muted); font-size:.82rem; margin-top:8px; }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start; }
+    .about-text p { color:var(--muted); font-size:1.05rem; margin-bottom:16px; }
+    .about-text strong { color:var(--text-hi); font-weight:600; }
+    .facts {
+      background:var(--surface); border:1px solid var(--border); border-radius:16px;
+      padding:26px; font-family:'JetBrains Mono',monospace;
+    }
+    .fact { display:flex; justify-content:space-between; gap:14px; padding:12px 0; border-bottom:1px dashed var(--border); font-size:.9rem; }
+    .fact:last-child { border-bottom:0; }
+    .fact .k { color:var(--muted); }
+    .fact .v { color:var(--text-hi); text-align:right; font-weight:600; }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
     .skill-card {
-      background: var(--card);
-      padding: 32px;
-      border-radius: 24px;
-      box-shadow: 0 10px 30px var(--shadow);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
+      background:var(--surface); border:1px solid var(--border); border-radius:16px;
+      padding:26px; transition:border-color .25s, transform .25s, box-shadow .25s;
+      position:relative; overflow:hidden;
     }
-    .skill-card:hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    .skill-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,var(--blue),var(--purple));
+      transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
     }
+    .skill-card:hover { transform:translateY(-6px); border-color:var(--blue); box-shadow:0 20px 40px -24px var(--shadow); }
+    .skill-card:hover::before { transform:scaleX(1); }
     .skill-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-      font-weight: 700;
+      font-size:1.05rem; color:var(--text-hi); font-weight:700; margin-bottom:18px;
+      display:flex; align-items:center; gap:10px;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-card h3 i { color:var(--blue); font-size:1.05rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; }
     .tag {
-      background: #242f45;
-      color: #c7d2fe;
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.2s;
+      font-family:'JetBrains Mono',monospace; font-size:.78rem; font-weight:500;
+      background:var(--surface-2); color:var(--text);
+      border:1px solid var(--border); padding:5px 12px; border-radius:8px;
+      transition:color .2s, border-color .2s, transform .15s;
     }
-    .light-theme .tag {
-      background: #f0f9ff;
-      color: #0369a1;
-    }
-    .tag:hover {
-      background: #334155;
-      transform: scale(1.05);
-    }
+    .tag:hover { color:var(--blue); border-color:var(--blue); transform:translateY(-2px); }
 
-    .level-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .level-name {
-      width: 120px;
-      font-weight: 600;
-    }
-    .level-bar {
-      flex: 1;
-      height: 8px;
-      background: #242f45;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .level-fill {
-      height: 100%;
-      background: linear-gradient(to right, var(--accent), var(--accent2));
-      border-radius: 4px;
-    }
-    .level-badge {
-      margin-left: 12px;
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-weight: 600;
-    }
+    .levels { max-width:720px; margin:48px auto 0; }
+    .levels-title { text-align:center; font-family:'JetBrains Mono',monospace; color:var(--muted); font-size:.85rem; margin-bottom:24px; }
+    .level { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+    .level .ln { width:110px; font-family:'JetBrains Mono',monospace; font-size:.88rem; color:var(--text-hi); font-weight:600; }
+    .level .bar { flex:1; height:8px; background:var(--surface-2); border:1px solid var(--border); border-radius:50px; overflow:hidden; }
+    .level .fill { height:100%; width:0; border-radius:50px; background:linear-gradient(90deg,var(--blue),var(--purple)); transition:width 1.1s cubic-bezier(.2,.8,.2,1); }
+    .level .pct { width:44px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:.82rem; color:var(--blue); font-weight:600; }
 
-    .timeline {
-      max-width: 800px;
-      margin: 40px auto;
-      position: relative;
+    /* ---------- TIMELINE ---------- */
+    .timeline { position:relative; max-width:760px; margin:0 auto; padding-left:34px; }
+    .timeline::before { content:''; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--border); }
+    .tl-item { position:relative; padding-bottom:36px; }
+    .tl-item:last-child { padding-bottom:0; }
+    .tl-item::before {
+      content:''; position:absolute; left:-34px; top:5px; width:20px; height:20px;
+      border-radius:50%; background:var(--bg); border:2px solid var(--blue);
+      box-shadow:0 0 0 4px color-mix(in srgb,var(--blue) 15%, transparent);
     }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--accent);
-      transform: translateX(-50%);
-    }
-    .timeline-item {
-      display: flex;
-      margin-bottom: 40px;
-      position: relative;
-      width: 100%;
-    }
-    .timeline-item:nth-child(odd) {
-      justify-content: flex-end;
-      padding-right: calc(50% + 30px);
-    }
-    .timeline-item:nth-child(even) {
-      justify-content: flex-start;
-      padding-left: calc(50% + 30px);
-    }
-    .timeline-content {
-      background: var(--card);
-      padding: 24px;
-      border-radius: 18px;
-      box-shadow: 0 6px 20px var(--shadow);
-      width: 100%;
-      max-width: 360px;
-    }
-    .timeline-date {
-      font-size: 0.9rem;
-      color: var(--accent);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .timeline-title {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-    .timeline-text { color: #cbd5e1; line-height: 1.6; }
-    .light-theme .timeline-text { color: #334155; }
+    .tl-item.cur::before { background:var(--blue); }
+    .tl-date { font-family:'JetBrains Mono',monospace; font-size:.8rem; color:var(--blue); font-weight:600; margin-bottom:6px; }
+    .tl-title { font-size:1.1rem; font-weight:700; color:var(--text-hi); margin-bottom:8px; }
+    .tl-text { color:var(--muted); font-size:.96rem; }
+    .tl-text em { color:var(--text); font-style:italic; }
 
-    .timeline-dot {
-      position: absolute;
-      left: 50%;
-      top: 30px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      transform: translateX(-50%);
-      z-index: 2;
+    /* ---------- PROJECTS ---------- */
+    .proj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; }
+    .proj-card {
+      background:var(--surface); border:1px solid var(--border); border-radius:18px;
+      padding:28px; display:flex; flex-direction:column;
+      transition:transform .3s, border-color .3s, box-shadow .3s; position:relative; overflow:hidden;
     }
+    .proj-card:hover { transform:translateY(-8px); border-color:var(--blue); box-shadow:0 28px 54px -28px var(--shadow); }
+    .proj-card.feat { grid-column:span 2; }
+    .proj-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+    .proj-icon {
+      width:50px; height:50px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; color:#fff; background:linear-gradient(135deg,var(--blue),var(--purple));
+    }
+    .proj-idx { font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--muted); font-weight:600; }
+    .proj-card h3 { font-size:1.2rem; color:var(--text-hi); font-weight:700; margin-bottom:12px; line-height:1.3; }
+    .proj-card p { color:var(--muted); font-size:.94rem; margin-bottom:20px; flex:1; }
+    .proj-tech { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px; }
+    .tech {
+      font-family:'JetBrains Mono',monospace; font-size:.74rem; font-weight:500;
+      color:var(--teal); background:color-mix(in srgb,var(--teal) 10%, transparent);
+      border:1px solid color-mix(in srgb,var(--teal) 26%, transparent);
+      padding:4px 10px; border-radius:7px;
+    }
+    .proj-link { display:inline-flex; align-items:center; gap:9px; color:var(--blue); font-weight:600; font-size:.94rem; width:max-content; transition:gap .25s; }
+    .proj-link:hover { gap:13px; }
 
-    .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px;
-      margin-top: 30px;
+    /* ---------- INTERESTS ---------- */
+    .int-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+    .int {
+      background:var(--surface); border:1px solid var(--border); border-radius:13px;
+      padding:20px 16px; text-align:center; transition:transform .25s, border-color .25s;
     }
-    .interest-card {
-      background: var(--card);
-      padding: 24px 20px;
-      border-radius: 20px;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .interest-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px var(--shadow);
-    }
-    .interest-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .interest-title {
-      font-weight: 600;
-      font-size: 1rem;
-    }
+    .int:hover { transform:translateY(-5px); border-color:var(--purple); }
+    .int i { font-size:1.5rem; color:var(--purple); margin-bottom:12px; display:block; }
+    .int span { font-size:.9rem; color:var(--text); font-weight:500; }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-      margin-top: 30px;
+    /* ---------- CONTACT ---------- */
+    .contact-wrap { text-align:center; }
+    .contact-card {
+      max-width:640px; margin:0 auto; background:var(--surface);
+      border:1px solid var(--border); border-radius:22px; padding:44px 32px;
     }
-    .project-card {
-      background: var(--card);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 10px 30px var(--shadow);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
-    }
-    .project-card:hover {
-      transform: translateY(-12px) rotateX(4deg) rotateY(4deg);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.35);
-    }
-    .project-icon {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      color: white;
-      font-size: 1.4rem;
-    }
-    .project-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-      color: var(--text);
-      font-weight: 700;
-    }
-    .project-card p {
-      color: #94a3b8;
-      margin-bottom: 22px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    .light-theme .project-card p { color: #475569; }
-
-    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-    .tech-tag {
-      background: #242f45;
-      color: #c7d2fe;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-    .light-theme .tech-tag {
-      background: #f0f9ff;
-      color: var(--accent);
-    }
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      font-weight: 700;
-      transition: gap 0.3s;
-    }
-    .project-link:hover { gap: 14px; }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-      margin-top: 30px;
-    }
+    .contact-list { display:flex; flex-direction:column; gap:14px; margin-top:28px; }
     .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 1.15rem;
-      transition: transform 0.3s;
+      display:flex; align-items:center; gap:16px; text-align:left;
+      background:var(--bg-2); border:1px solid var(--border); border-radius:13px;
+      padding:16px 20px; transition:transform .2s, border-color .2s;
     }
-    .contact-item:hover {
-      transform: translateX(8px);
+    .contact-item:hover { transform:translateX(6px); border-color:var(--blue); }
+    .contact-item .ci {
+      width:46px; height:46px; border-radius:11px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#fff;
+      background:linear-gradient(135deg,var(--blue),var(--purple));
     }
-    .contact-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #242f45, #334155);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: var(--accent);
-      transition: all 0.3s;
-    }
-    .light-theme .contact-icon {
-      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
-      color: var(--accent);
-    }
-    .contact-item:hover .contact-icon {
-      transform: rotate(10deg) scale(1.1);
-      background: linear-gradient(135deg, #334155, #475569);
-    }
+    .contact-item .cv { display:flex; flex-direction:column; }
+    .contact-item .cv .k { font-family:'JetBrains Mono',monospace; font-size:.74rem; color:var(--muted); }
+    .contact-item .cv .val { color:var(--text-hi); font-weight:600; font-size:1.02rem; }
 
+    /* ---------- FOOTER ---------- */
     footer {
-      text-align: center;
-      padding: 50px 0 30px;
-      color: #94a3b8;
-      font-size: 1rem;
-      border-top: 1px solid var(--border);
+      border-top:1px solid var(--border); padding:32px 0;
+      text-align:center; color:var(--muted); font-size:.9rem;
+      font-family:'JetBrains Mono',monospace;
     }
-    .light-theme footer { color: #64748b; }
+    footer .heart { color:var(--pink); }
 
-    @media (max-width: 900px) {
-      .timeline::before { left: 30px; }
-      .timeline-item:nth-child(odd),
-      .timeline-item:nth-child(even) {
-        justify-content: flex-start;
-        padding-left: 70px;
-        padding-right: 0;
-      }
-      .timeline-dot { left: 30px; }
-    }
+    /* mobile menu button */
+    .menu-btn { display:none; }
 
-    @media (max-width: 768px) {
-      /* Bara de navigație curge normal pe telefon (nu mai acoperă conținutul) */
-      nav { position: relative; padding: 16px 0; }
-      .navbar { flex-direction: column; gap: 16px; }
-      .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px 18px; }
-      .nav-links a { padding: 6px 4px; }
+    /* reveal animation */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity:1; transform:none; }
 
-      section { padding: 64px 0 52px; }
-      .hero { padding-top: 32px; }
-      .hero h1 { font-size: 2.3rem; }
-      .hero p { font-size: 1.05rem; }
-      .section-title { font-size: 2rem; margin-bottom: 36px; }
-      .container { padding: 0 18px; }
-
-      .projects-grid, .skills-grid { grid-template-columns: 1fr; gap: 22px; }
-      .interests-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .skill-card, .project-card { padding: 24px; }
-      .stats-grid { gap: 22px 30px; }
-
-      /* Fără efecte 3D la atingere (arată mai curat pe telefon) */
-      .project-card:hover, .skill-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 14px 30px var(--shadow);
-      }
-      .cursor, .cursor-follower { display: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation:none !important; transition:none !important; }
+      .reveal { opacity:1; transform:none; }
     }
 
-    @media (max-width: 480px) {
-      .logo { font-size: 1.35rem; }
-      .nav-links { gap: 8px 14px; font-size: 0.95rem; }
-      .hero { padding-top: 20px; }
-      .hero h1 { font-size: 1.95rem; }
-      .hero p { font-size: 1rem; }
-      .section-title { font-size: 1.7rem; }
-      .stat-number { font-size: 2.1rem; }
-      .btn { padding: 14px 30px; font-size: 1rem; }
-      .contact-item { font-size: 1.05rem; }
-      .contact-icon { width: 46px; height: 46px; font-size: 1.2rem; }
-      .interest-title { font-size: 0.92rem; }
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:900px) {
+      .hero-grid { grid-template-columns:1fr; gap:36px; }
+      .terminal { order:-1; }
+      .about-grid { grid-template-columns:1fr; gap:28px; }
+      .proj-card.feat { grid-column:span 1; }
+      .stats { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:720px) {
+      .nav-links { display:none; }
+      .menu-btn { display:inline-flex; }
+      section { padding:72px 0; }
+      .hero { padding-top:110px; }
+      .container { padding:0 18px; }
+      .section-lead { margin-bottom:32px; }
+      .cta-row .btn { flex:1; justify-content:center; }
+      .int-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:420px) {
+      .stats { grid-template-columns:1fr 1fr; gap:12px; }
+      .stat .num { font-size:1.8rem; }
+      .level .ln { width:82px; font-size:.8rem; }
+      .contact-item .cv .val { font-size:.92rem; word-break:break-all; }
     }
   </style>
 </head>
-<body class="dark-theme hover-target">
+<body>
 
-  <div id="particles-js"></div>
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-
-  <nav>
+  <nav id="nav">
     <div class="container navbar">
-      <div class="logo">Bogdan Chirilă</div>
-      <div class="nav-links">
-        <a href="#home">Acasă</a>
-        <a href="#about">Despre</a>
-        <a href="#skills">Competențe</a>
-        <a href="#timeline">Educație</a>
-        <a href="#projects">Proiecte</a>
-        <a href="#interests">Interese</a>
-        <a href="#contact">Contact</a>
+      <a href="#home" class="logo mono"><span class="dot">&gt;</span> bogdan<b>.</b>chirila</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" data-i18n="home">acasa</a>
+        <a href="#about" data-i18n="about">despre</a>
+        <a href="#skills" data-i18n="skills">competente</a>
+        <a href="#timeline" data-i18n="timeline">educatie</a>
+        <a href="#projects" data-i18n="projects">proiecte</a>
+        <a href="#interests" data-i18n="interests">interese</a>
+        <a href="#contact" data-i18n="contact">contact</a>
       </div>
       <div class="controls">
-        <button class="lang-toggle" id="langToggle">🇬🇧 EN</button>
-        <button class="theme-toggle" id="themeToggle">
-          <i class="fas fa-sun"></i>
-        </button>
+        <button class="ctrl-btn mono" id="langToggle" aria-label="Schimba limba">EN</button>
+        <button class="ctrl-btn" id="themeToggle" aria-label="Schimba tema"><i class="fas fa-sun"></i></button>
+        <button class="ctrl-btn menu-btn" id="menuBtn" aria-label="Meniu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </nav>
 
-  <section id="home" class="hero">
-    <h1>Construiesc Experiențe Digitale</h1>
-    <p>Construiesc aplicații web și automatizări reale, folosite zilnic în producție - de la platforme PWA de depozit (PHP, JavaScript, MySQL) la sisteme desktop de procesare a facturilor cu OCR (Python). Cu accent pe performanță, fiabilitate și experiența utilizatorului.</p>
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number" id="langCount">0</div>
-        <div class="stat-label" id="statLangLabel">Limbaje</div>
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-intro">
+        <h1><span data-i18n="heroLine1">Construiesc</span> <span class="grad" data-i18n="heroLine2">produse digitale reale</span></h1>
+        <div class="role mono">Full-Stack Developer &middot; eCommerce</div>
+        <p class="lead" data-i18n="heroLead">Aplicatii web si automatizari folosite zilnic in productie - de la platforme PWA de depozit (PHP, JavaScript, MySQL) la sisteme desktop de procesare a facturilor cu OCR (Python). Accent pe performanta, fiabilitate si experienta utilizatorului.</p>
+        <div class="cta-row">
+          <a href="#projects" class="btn btn-primary"><i class="fas fa-folder-open"></i> <span data-i18n="ctaProjects">Vezi proiectele</span></a>
+          <a href="#contact" class="btn btn-ghost"><i class="fas fa-paper-plane"></i> <span data-i18n="ctaContact">Contact</span></a>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number" id="projectCount">0</div>
-        <div class="stat-label" id="statProjLabel">Proiecte</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" id="hackathonCount">0</div>
-        <div class="stat-label" id="statModLabel">Module AMS Scan</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" id="cloudCount">0</div>
-        <div class="stat-label" id="statIntegrLabel">Integrări API</div>
+
+      <div class="terminal" aria-hidden="true">
+        <div class="term-bar">
+          <span class="tb r"></span><span class="tb y"></span><span class="tb g"></span>
+          <span class="tt mono">bogdan@dev: ~/portfolio</span>
+        </div>
+        <div class="term-body mono" id="term"></div>
       </div>
     </div>
-    <a href="#projects" class="btn">Explorează Proiectele</a>
-  </section>
 
+    <div class="container">
+      <div class="stats reveal">
+        <div class="stat"><div class="num mono"><span id="s1">0</span>+</div><div class="lbl" data-i18n="statLang">Limbaje</div></div>
+        <div class="stat"><div class="num mono"><span id="s2">0</span></div><div class="lbl" data-i18n="statProj">Proiecte</div></div>
+        <div class="stat"><div class="num mono"><span id="s3">0</span></div><div class="lbl" data-i18n="statMod">Module AMS Scan</div></div>
+        <div class="stat"><div class="num mono"><span id="s4">0</span></div><div class="lbl" data-i18n="statIntegr">Integrari API</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
   <section id="about">
-    <h2 class="section-title">Despre Mine</h2>
-    <div class="text-content">
-      <p id="aboutText">
-        Sunt un dezvoltator full-stack de 24 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. În ultimul an am construit și menținut aplicații reale, folosite zilnic în producție: o platformă web PWA de gestiune a depozitului și un sistem desktop de automatizare a facturilor cu OCR și integrare ERP. Lucrez cu PHP, JavaScript, MySQL și Python, de la baze de date și API-uri până la interfața finală, și integrez soluții AI acolo unde aduc valoare reală. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.
-      </p>
+    <div class="container">
+      <div class="kicker" data-i18n="kAbout">despre_mine</div>
+      <h2 class="section-title" data-i18n="aboutTitle">Cine sunt</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p data-i18n="aboutP1"><strong>Dezvoltator full-stack de 24 de ani</strong>, pasionat de IT si dornic sa contribui activ intr-un mediu profesionist. In ultimul an am construit si mentinut aplicatii reale, folosite zilnic in productie: o platforma web PWA de gestiune a depozitului si un sistem desktop de automatizare a facturilor cu OCR si integrare ERP.</p>
+          <p data-i18n="aboutP2">Lucrez cu PHP, JavaScript, MySQL si Python, de la baze de date si API-uri pana la interfata finala, si integrez solutii AI acolo unde aduc valoare reala. Ma caracterizeaza seriozitatea, spiritul de echipa si dorinta constanta de a invata si de a ma perfectiona.</p>
+          <p data-i18n="aboutP3">Sunt sociabil, comunicativ si deschis catre colaborare, dar si capabil sa lucrez independent atunci cand e nevoie. Consider ca integritatea si bunul simt sunt valori esentiale atat in viata personala, cat si in cea profesionala.</p>
+        </div>
+        <div class="facts reveal">
+          <div class="fact"><span class="k">varsta</span><span class="v">24</span></div>
+          <div class="fact"><span class="k">rol</span><span class="v">Full-Stack Dev</span></div>
+          <div class="fact"><span class="k" data-i18n="factLoc">locatie</span><span class="v">Bucuresti, RO</span></div>
+          <div class="fact"><span class="k" data-i18n="factFocus">focus</span><span class="v">Web - PWA - AI</span></div>
+          <div class="fact"><span class="k" data-i18n="factCompany">companie</span><span class="v">ATV Moto Shop</span></div>
+          <div class="fact"><span class="k" data-i18n="factStatus">status</span><span class="v" style="color:var(--green)" data-i18n="factOpen">deschis</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- SKILLS -->
   <section id="skills">
-    <h2 class="section-title">Expertiză Tehnică</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h3>Limbaje</h3>
-        <div class="tags">
-          <span class="tag">PHP</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Python</span>
-          <span class="tag">SQL</span>
-          <span class="tag">C++</span>
-          <span class="tag">C#</span>
+    <div class="container">
+      <div class="kicker" data-i18n="kSkills">stack_tehnic</div>
+      <h2 class="section-title" data-i18n="skillsTitle">Expertiza tehnica</h2>
+      <p class="section-lead" data-i18n="skillsLead">Tehnologiile cu care lucrez zi de zi, de la backend si baze de date pana la marketing digital si AI.</p>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3><i class="fas fa-code"></i> <span data-i18n="skLang">Limbaje</span></h3>
+          <div class="tags">
+            <span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">Python</span>
+            <span class="tag">SQL</span><span class="tag">C++</span><span class="tag">C#</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><i class="fas fa-globe"></i> <span data-i18n="skWeb">Web &amp; Frameworks</span></h3>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Flask</span>
+            <span class="tag">REST APIs</span><span class="tag">PWA</span><span class="tag">Service Workers</span><span class="tag">Web Push</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><i class="fas fa-database"></i> <span data-i18n="skDb">Baze de date &amp; Integrari</span></h3>
+          <div class="tags">
+            <span class="tag">MySQL / MariaDB</span><span class="tag">ERP RVX</span>
+            <span class="tag">PrestaShop API</span><span class="tag">Firebase</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><i class="fas fa-gears"></i> <span data-i18n="skAuto">Automatizare &amp; Tools</span></h3>
+          <div class="tags">
+            <span class="tag">Tkinter</span><span class="tag">OCR</span><span class="tag">pdfplumber</span>
+            <span class="tag">OpenPyXL</span><span class="tag">Scanare 1D/2D</span><span class="tag">Git</span><span class="tag">OOP</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><i class="fas fa-chart-line"></i> <span data-i18n="skSeo">Marketing Digital &amp; SEO</span></h3>
+          <div class="tags">
+            <span class="tag">SEO</span><span class="tag">Google Ads</span><span class="tag">Analytics</span>
+            <span class="tag">Search Console</span><span class="tag">Merchant</span><span class="tag">Feed-uri produse</span><span class="tag">Foto produs</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><i class="fas fa-robot"></i> <span data-i18n="skAi">AI &amp; Dezvoltare Asistata</span></h3>
+          <div class="tags">
+            <span class="tag">Integrare AI / LLM</span><span class="tag">API Claude</span><span class="tag">Prompt Engineering</span>
+            <span class="tag">Extragere date (OCR/PDF)</span><span class="tag">Automatizare cu AI</span>
+          </div>
         </div>
       </div>
-      <div class="skill-card">
-        <h3>Web & Frameworks</h3>
-        <div class="tags">
-          <span class="tag">HTML5</span>
-          <span class="tag">CSS3</span>
-          <span class="tag">PHP</span>
-          <span class="tag">Flask</span>
-          <span class="tag">REST APIs</span>
-          <span class="tag">PWA</span>
-          <span class="tag">Service Workers</span>
-          <span class="tag">Web Push</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Baze de Date & Integrări</h3>
-        <div class="tags">
-          <span class="tag">MySQL / MariaDB</span>
-          <span class="tag">SQL</span>
-          <span class="tag">ERP RVX</span>
-          <span class="tag">PrestaShop API</span>
-          <span class="tag">Firebase</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Automatizare & Tools</h3>
-        <div class="tags">
-          <span class="tag">Tkinter</span>
-          <span class="tag">OCR</span>
-          <span class="tag">pdfplumber</span>
-          <span class="tag">OpenPyXL</span>
-          <span class="tag">Scanare coduri 1D/2D</span>
-          <span class="tag">Git</span>
-          <span class="tag">OOP</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Marketing Digital & SEO</h3>
-        <div class="tags">
-          <span class="tag">SEO</span>
-          <span class="tag">Google Ads</span>
-          <span class="tag">Google Analytics</span>
-          <span class="tag">Search Console</span>
-          <span class="tag">Google Merchant</span>
-          <span class="tag">Feed-uri de produse</span>
-          <span class="tag">Listare produse</span>
-          <span class="tag">Foto produs</span>
-          <span class="tag">Reclamă online</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>AI & Dezvoltare Asistată</h3>
-        <div class="tags">
-          <span class="tag">Integrare AI / LLM</span>
-          <span class="tag">API Claude</span>
-          <span class="tag">Prompt Engineering</span>
-          <span class="tag">Dezvoltare asistată de AI</span>
-          <span class="tag">Extragere date cu AI (OCR/PDF)</span>
-          <span class="tag">Automatizare cu AI</span>
-        </div>
-      </div>
-    </div>
 
-    <h3 style="text-align:center; margin:40px 0 20px; font-weight:700;">Niveluri de Competență</h3>
-    <div class="container" style="max-width:700px;">
-      <div class="level-item">
-        <div class="level-name">PHP</div>
-        <div class="level-bar"><div class="level-fill" style="width:92%"></div></div>
-        <div class="level-badge">Avansat</div>
-      </div>
-      <div class="level-item">
-        <div class="level-name">JavaScript</div>
-        <div class="level-bar"><div class="level-fill" style="width:88%"></div></div>
-        <div class="level-badge">Avansat</div>
-      </div>
-      <div class="level-item">
-        <div class="level-name">Python</div>
-        <div class="level-bar"><div class="level-fill" style="width:90%"></div></div>
-        <div class="level-badge">Avansat</div>
-      </div>
-      <div class="level-item">
-        <div class="level-name">MySQL</div>
-        <div class="level-bar"><div class="level-fill" style="width:85%"></div></div>
-        <div class="level-badge">Avansat</div>
-      </div>
-      <div class="level-item">
-        <div class="level-name">PWA / API</div>
-        <div class="level-bar"><div class="level-fill" style="width:82%"></div></div>
-        <div class="level-badge">Avansat</div>
+      <div class="levels reveal">
+        <div class="levels-title mono" data-i18n="levelsTitle">// niveluri de competenta</div>
+        <div class="level"><div class="ln">PHP</div><div class="bar"><div class="fill" data-w="92"></div></div><div class="pct">92%</div></div>
+        <div class="level"><div class="ln">JavaScript</div><div class="bar"><div class="fill" data-w="88"></div></div><div class="pct">88%</div></div>
+        <div class="level"><div class="ln">Python</div><div class="bar"><div class="fill" data-w="90"></div></div><div class="pct">90%</div></div>
+        <div class="level"><div class="ln">MySQL</div><div class="bar"><div class="fill" data-w="85"></div></div><div class="pct">85%</div></div>
+        <div class="level"><div class="ln">PWA / API</div><div class="bar"><div class="fill" data-w="82"></div></div><div class="pct">82%</div></div>
       </div>
     </div>
   </section>
 
+  <!-- TIMELINE -->
   <section id="timeline">
-    <h2 class="section-title">Educație & Experiență</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">2025 - Prezent · 1 an</div>
-          <div class="timeline-title">Full-Stack Developer & eCommerce · ATV Moto Shop</div>
-          <div class="timeline-text">Dezvolt și mențin aplicațiile interne folosite zilnic de echipa din depozit: platforma web PWA <em>AMS Scan</em> (PHP, JavaScript, MySQL) și sistemul de automatizare a facturilor cu OCR (Python). Integrări cu ERP-ul RVX și PrestaShop, scanare de coduri, sincronizare în timp real și tipărire de etichete. Mă ocup și de prezența online a magazinului: listarea și optimizarea produselor, fotografie de produs, reclamă, SEO, Google Ads, Analytics, Search Console și Merchant Center, plus integrarea și crearea de feed-uri de produse și lucrul cu API-uri pentru sincronizarea catalogului. Folosesc AI în procesul de dezvoltare și am implementat funcții cu integrare AI direct în aplicații (ex. extragerea datelor din facturi scanate cu Claude API).</div>
+    <div class="container">
+      <div class="kicker" data-i18n="kTimeline">parcurs</div>
+      <h2 class="section-title" data-i18n="timelineTitle">Educatie &amp; Experienta</h2>
+      <p class="section-lead" data-i18n="timelineLead">Drumul de la scoala tehnica la dezvoltare full-stack in productie.</p>
+      <div class="timeline">
+        <div class="tl-item cur reveal">
+          <div class="tl-date">2025 - <span data-i18n="tlNow">Prezent</span> &middot; 1 <span data-i18n="tlYear">an</span></div>
+          <div class="tl-title" data-i18n="tl1t">Full-Stack Developer &amp; eCommerce &middot; ATV Moto Shop</div>
+          <div class="tl-text" data-i18n="tl1d">Dezvolt si mentin aplicatiile interne folosite zilnic de echipa din depozit: platforma web PWA AMS Scan (PHP, JavaScript, MySQL) si sistemul de automatizare a facturilor cu OCR (Python). Integrari cu ERP-ul RVX si PrestaShop, scanare de coduri, sincronizare in timp real si tiparire de etichete. Ma ocup si de prezenta online: listare si optimizare produse, foto, reclama, SEO, Google Ads, Analytics, Search Console si Merchant, plus feed-uri de produse si API-uri de catalog. Folosesc AI in dezvoltare si am implementat functii cu integrare AI direct in aplicatii.</div>
         </div>
-        <div class="timeline-dot"></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">2022 - 2025</div>
-          <div class="timeline-title">Facultatea Spiru Haret</div>
-          <div class="timeline-text">Inginerie și Informatică. Lucrare de diplomă: <em>Implementarea unei platforme web de închirieri auto folosind o bază de date în cloud</em>.</div>
+        <div class="tl-item reveal">
+          <div class="tl-date">2022 - 2025</div>
+          <div class="tl-title" data-i18n="tl2t">Facultatea Spiru Haret</div>
+          <div class="tl-text" data-i18n="tl2d">Inginerie si Informatica. Lucrare de diploma: <em>Implementarea unei platforme web de inchirieri auto folosind o baza de date in cloud</em>.</div>
         </div>
-        <div class="timeline-dot"></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">2022 - 2024</div>
-          <div class="timeline-title">KLF Logistica</div>
-          <div class="timeline-text">Tehnician aparate de cafea și snack - muncă serioasă, responsabilă, într-un mediu profesional.</div>
+        <div class="tl-item reveal">
+          <div class="tl-date">2022 - 2024</div>
+          <div class="tl-title" data-i18n="tl3t">KLF Logistica</div>
+          <div class="tl-text" data-i18n="tl3d">Tehnician aparate de cafea si snack - munca serioasa, responsabila, intr-un mediu profesional.</div>
         </div>
-        <div class="timeline-dot"></div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">2017 - 2021</div>
-          <div class="timeline-title">Colegiul Tehnic Petru Maior</div>
-          <div class="timeline-text">Bacalaureat, profil real. Atestat în informatică.</div>
+        <div class="tl-item reveal">
+          <div class="tl-date">2017 - 2021</div>
+          <div class="tl-title" data-i18n="tl4t">Colegiul Tehnic Petru Maior</div>
+          <div class="tl-text" data-i18n="tl4d">Bacalaureat, profil real. Atestat in informatica.</div>
         </div>
-        <div class="timeline-dot"></div>
       </div>
     </div>
   </section>
 
-  <section id="interests">
-    <h2 class="section-title">Hobby-uri & Interese</h2>
-    <div class="interests-grid">
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
-        <div class="interest-title">Jocuri Strategice</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-brain"></i></div>
-        <div class="interest-title">AI & Machine Learning</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-shield-alt"></i></div>
-        <div class="interest-title">Securitate Cibernetică</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-cloud"></i></div>
-        <div class="interest-title">Cloud Computing</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-code"></i></div>
-        <div class="interest-title">Hackathoane</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-futbol"></i></div>
-        <div class="interest-title">Fotbal</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-camera"></i></div>
-        <div class="interest-title">Fotografie</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-motorcycle"></i></div>
-        <div class="interest-title">Motociclete & ATV</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-microchip"></i></div>
-        <div class="interest-title">Tehnologie & Gadgeturi</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-robot"></i></div>
-        <div class="interest-title">Automatizări & DIY</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon"><i class="fas fa-book-open"></i></div>
-        <div class="interest-title">Învățare Continuă</div>
-      </div>
-    </div>
-  </section>
-
+  <!-- PROJECTS -->
   <section id="projects">
-    <h2 class="section-title">Proiecte Selectate</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-barcode"></i></div>
-        <h3>AMS Scan - Platformă WMS de Depozit (PWA)</h3>
-        <p>Aplicație web PWA folosită zilnic în producție la ATV Moto Shop pentru gestionarea depozitului. 13 module (livrări, recepție, retururi, inventar, verificare produs, schimbare locație, verificare comenzi) cu scanare de coduri prin camera telefonului (1D/2D), sincronizare în timp real între operatori, notificări Web Push, tipărire automată de etichete pe imprimante Zebra printr-un agent Python, generare AWB pentru curieri (GLS, Sameday, Fan, DPD, UPS) și integrare cu ERP-ul RVX și PrestaShop. Peste 56 de fișiere PHP, backend MySQL, complet mobile-first, cu autentificare multi-user și permisiuni pe module.</p>
-        <div class="project-tech">
-          <span class="tech-tag">PHP 8</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">PWA</span>
-          <span class="tech-tag">REST API</span>
+    <div class="container">
+      <div class="kicker" data-i18n="kProjects">portofoliu</div>
+      <h2 class="section-title" data-i18n="projectsTitle">Proiecte selectate</h2>
+      <p class="section-lead" data-i18n="projectsLead">Aplicatii reale in productie si proiecte personale care mi-au format stack-ul.</p>
+      <div class="proj-grid">
+
+        <div class="proj-card feat reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-barcode"></i></div>
+            <span class="proj-idx mono">01 / featured</span>
+          </div>
+          <h3 data-i18n="p1t">AMS Scan - Platforma WMS de Depozit (PWA)</h3>
+          <p data-i18n="p1d">Aplicatie web PWA folosita zilnic in productie la ATV Moto Shop pentru gestionarea depozitului. 13 module (livrari, receptie, retururi, inventar, verificare produs, schimbare locatie, verificare comenzi) cu scanare de coduri prin camera telefonului (1D/2D), sincronizare in timp real intre operatori, notificari Web Push, tiparire automata de etichete pe imprimante Zebra printr-un agent Python, generare AWB pentru curieri (GLS, Sameday, Fan, DPD, UPS) si integrare cu ERP-ul RVX si PrestaShop. Peste 56 de fisiere PHP, backend MySQL, complet mobile-first, cu autentificare multi-user si permisiuni pe module.</p>
+          <div class="proj-tech">
+            <span class="tech">PHP 8</span><span class="tech">JavaScript</span><span class="tech">MySQL</span>
+            <span class="tech">Python</span><span class="tech">PWA</span><span class="tech">REST API</span>
+          </div>
+          <a href="https://scan.atvmotoshop.com" target="_blank" rel="noopener" class="proj-link"><i class="fas fa-arrow-up-right-from-square"></i> scan.atvmotoshop.com</a>
         </div>
-        <a href="https://scan.atvmotoshop.com" target="_blank" class="project-link">
-          <i class="fas fa-globe"></i> Live: scan.atvmotoshop.com
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-file-invoice"></i></div>
-        <h3>Automatizare Facturi - OCR & Integrare ERP</h3>
-        <p>Aplicație desktop (Python + Tkinter) care procesează automat facturile PDF de la furnizori internaționali (CFMOTO, ASP, MOTORIDER). Extrage produsele din PDF-uri native sau scanate folosind OCR Windows cu corecție de erori bazată pe constrângeri (~70-80% recuperare) și un fallback pe AI (Claude API) pentru facturile scanate dificile. Reconciliază prețurile din mai multe surse (feed-uri web + ERP RVX), calculează marje și adaosuri prin formule Excel și generează template-uri de import. ~4.000 linii Python, caching inteligent (TTL 24h), procesare pe fire de execuție și interfață proprie cu temă dark.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Tkinter</span>
-          <span class="tech-tag">OCR</span>
-          <span class="tech-tag">AI / Claude API</span>
-          <span class="tech-tag">pdfplumber</span>
-          <span class="tech-tag">OpenPyXL</span>
-          <span class="tech-tag">REST API</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-file-invoice"></i></div>
+            <span class="proj-idx mono">02</span>
+          </div>
+          <h3 data-i18n="p2t">Automatizare Facturi - OCR &amp; Integrare ERP</h3>
+          <p data-i18n="p2d">Aplicatie desktop (Python + Tkinter) care proceseaza automat facturile PDF de la furnizori internationali (CFMOTO, ASP, MOTORIDER). Extrage produsele din PDF-uri native sau scanate folosind OCR Windows cu corectie de erori bazata pe constrangeri (~70-80% recuperare) si un fallback pe AI (Claude API) pentru facturile scanate dificile. Reconciliaza preturile din mai multe surse, calculeaza marje prin formule Excel si genereaza template-uri de import. ~4.000 linii Python, caching inteligent (TTL 24h), procesare pe fire de executie si interfata proprie cu tema dark.</p>
+          <div class="proj-tech">
+            <span class="tech">Python</span><span class="tech">Tkinter</span><span class="tech">OCR</span>
+            <span class="tech">Claude API</span><span class="tech">pdfplumber</span><span class="tech">OpenPyXL</span>
+          </div>
+          <a href="#contact" class="proj-link"><i class="fas fa-circle-info"></i> <span data-i18n="pInternal">Aplicatie interna - detalii la cerere</span></a>
         </div>
-        <a href="#contact" class="project-link">
-          <i class="fas fa-circle-info"></i> Aplicație internă - detalii la cerere
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-bullhorn"></i></div>
-        <h3>eCommerce, SEO & Marketing Digital</h3>
-        <p>La ATV Moto Shop mă ocup de prezența online a magazinului: listarea și optimizarea produselor, fotografie de produs, conținut și campanii de reclamă. Lucrez cu Google Ads, Google Analytics, Search Console și Google Merchant Center pentru SEO și pentru performanța campaniilor. Am integrat și am creat feed-uri de produse (import/export) și folosesc API-uri pentru sincronizarea catalogului între platforme, astfel încât prețurile, stocurile și descrierile să fie mereu actualizate.</p>
-        <div class="project-tech">
-          <span class="tech-tag">SEO</span>
-          <span class="tech-tag">Google Ads</span>
-          <span class="tech-tag">Analytics</span>
-          <span class="tech-tag">Search Console</span>
-          <span class="tech-tag">Feed-uri produse</span>
-          <span class="tech-tag">API</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-bullhorn"></i></div>
+            <span class="proj-idx mono">03</span>
+          </div>
+          <h3 data-i18n="p3t">eCommerce, SEO &amp; Marketing Digital</h3>
+          <p data-i18n="p3d">La ATV Moto Shop ma ocup de prezenta online a magazinului: listarea si optimizarea produselor, fotografie de produs, continut si campanii de reclama. Lucrez cu Google Ads, Analytics, Search Console si Merchant Center pentru SEO si performanta campaniilor. Am integrat si am creat feed-uri de produse (import/export) si folosesc API-uri pentru sincronizarea catalogului intre platforme, astfel incat preturile, stocurile si descrierile sa fie mereu actualizate.</p>
+          <div class="proj-tech">
+            <span class="tech">SEO</span><span class="tech">Google Ads</span><span class="tech">Analytics</span>
+            <span class="tech">Search Console</span><span class="tech">Feed-uri</span><span class="tech">API</span>
+          </div>
+          <a href="#contact" class="proj-link"><i class="fas fa-circle-info"></i> <span data-i18n="pDetails">Detalii la cerere</span></a>
         </div>
-        <a href="#contact" class="project-link">
-          <i class="fas fa-circle-info"></i> Detalii la cerere
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-car"></i></div>
-        <h3>Platformă de Închirieri Auto</h3>
-        <p>O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Flask</span>
-          <span class="tech-tag">SQL</span>
-          <span class="tech-tag">Firebase</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-car"></i></div>
+            <span class="proj-idx mono">04</span>
+          </div>
+          <h3 data-i18n="p4t">Platforma de Inchirieri Auto</h3>
+          <p data-i18n="p4d">O aplicatie web pentru gestionarea inchirierilor de masini, cu integrare cloud si baze de date relationale. Proiectul meu de licenta la Facultatea Spiru Haret.</p>
+          <div class="proj-tech"><span class="tech">Python</span><span class="tech">Flask</span><span class="tech">SQL</span><span class="tech">Firebase</span></div>
+          <a href="https://github.com/BogdanChirila2002/projects" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
         </div>
-        <a href="https://github.com/BogdanChirila2002/projects" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-robot"></i></div>
-        <h3>Automatizare de Sarcini în Python</h3>
-        <p>Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web - perfect pentru productivitate personală.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Selenium</span>
-          <span class="tech-tag">SMTP</span>
-          <span class="tech-tag">OS</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-robot"></i></div>
+            <span class="proj-idx mono">05</span>
+          </div>
+          <h3 data-i18n="p5t">Automatizare de Sarcini in Python</h3>
+          <p data-i18n="p5d">Un script avansat de automatizare care gestioneaza fisiere, trimite emailuri programate si extrage date din surse web - perfect pentru productivitate personala.</p>
+          <div class="proj-tech"><span class="tech">Python</span><span class="tech">Selenium</span><span class="tech">SMTP</span><span class="tech">OS</span></div>
+          <a href="https://github.com/BogdanChirila2002" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
         </div>
-        <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-gamepad"></i></div>
-        <h3>Joc de Strategie în Pygame</h3>
-        <p>Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Pygame</span>
-          <span class="tech-tag">OOP</span>
-          <span class="tech-tag">Game Logic</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-gamepad"></i></div>
+            <span class="proj-idx mono">06</span>
+          </div>
+          <h3 data-i18n="p6t">Joc de Strategie in Pygame</h3>
+          <p data-i18n="p6d">Un joc strategic 2D dezvoltat in Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie si colaborare online.</p>
+          <div class="proj-tech"><span class="tech">Python</span><span class="tech">Pygame</span><span class="tech">OOP</span><span class="tech">Game Logic</span></div>
+          <a href="https://github.com/BogdanChirila2002" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
         </div>
-        <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-code-branch"></i></div>
-        <h3>Integrator de API-uri (Hackathon)</h3>
-        <p>O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, news) într-un singur dashboard.</p>
-        <div class="project-tech">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Flask</span>
-          <span class="tech-tag">REST APIs</span>
-          <span class="tech-tag">HTML/CSS</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-code-branch"></i></div>
+            <span class="proj-idx mono">07</span>
+          </div>
+          <h3 data-i18n="p7t">Integrator de API-uri (Hackathon)</h3>
+          <p data-i18n="p7d">O aplicatie rapida dezvoltata intr-un hackathon, care integreaza mai multe API-uri (vreme, criptomonede, stiri) intr-un singur panou.</p>
+          <div class="proj-tech"><span class="tech">JavaScript</span><span class="tech">Flask</span><span class="tech">REST APIs</span><span class="tech">HTML/CSS</span></div>
+          <a href="https://github.com/BogdanChirila2002" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
         </div>
-        <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
-      <div class="project-card">
-        <div class="project-icon"><i class="fas fa-cloud"></i></div>
-        <h3>Panou Personal în Cloud</h3>
-        <p>Un panou personal care urmărește activitatea GitHub, stocarea în cloud și sarcinile zilnice - cu integrare Firebase și notificări.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Flask</span>
-          <span class="tech-tag">Firebase</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Cloud</span>
+
+        <div class="proj-card reveal">
+          <div class="proj-head">
+            <div class="proj-icon"><i class="fas fa-cloud"></i></div>
+            <span class="proj-idx mono">08</span>
+          </div>
+          <h3 data-i18n="p8t">Panou Personal in Cloud</h3>
+          <p data-i18n="p8d">Un panou personal care urmareste activitatea GitHub, stocarea in cloud si sarcinile zilnice - cu integrare Firebase si notificari.</p>
+          <div class="proj-tech"><span class="tech">Flask</span><span class="tech">Firebase</span><span class="tech">JavaScript</span><span class="tech">Cloud</span></div>
+          <a href="https://github.com/BogdanChirila2002" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
         </div>
-        <a href="https://github.com/BogdanChirila2002" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> GitHub
-        </a>
+
       </div>
     </div>
   </section>
 
+  <!-- INTERESTS -->
+  <section id="interests">
+    <div class="container">
+      <div class="kicker" data-i18n="kInterests">in_afara_codului</div>
+      <h2 class="section-title" data-i18n="interestsTitle">Hobby-uri &amp; Interese</h2>
+      <div class="int-grid reveal">
+        <div class="int"><i class="fas fa-gamepad"></i><span data-i18n="i1">Jocuri Strategice</span></div>
+        <div class="int"><i class="fas fa-brain"></i><span data-i18n="i2">AI &amp; Machine Learning</span></div>
+        <div class="int"><i class="fas fa-shield-halved"></i><span data-i18n="i3">Securitate Cibernetica</span></div>
+        <div class="int"><i class="fas fa-cloud"></i><span data-i18n="i4">Cloud Computing</span></div>
+        <div class="int"><i class="fas fa-code"></i><span data-i18n="i5">Hackathoane</span></div>
+        <div class="int"><i class="fas fa-futbol"></i><span data-i18n="i6">Fotbal</span></div>
+        <div class="int"><i class="fas fa-camera"></i><span data-i18n="i7">Fotografie</span></div>
+        <div class="int"><i class="fas fa-motorcycle"></i><span data-i18n="i8">Motociclete &amp; ATV</span></div>
+        <div class="int"><i class="fas fa-microchip"></i><span data-i18n="i9">Tehnologie &amp; Gadgeturi</span></div>
+        <div class="int"><i class="fas fa-screwdriver-wrench"></i><span data-i18n="i10">Automatizari &amp; DIY</span></div>
+        <div class="int"><i class="fas fa-book-open"></i><span data-i18n="i11">Invatare Continua</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="contact">
-    <h2 class="section-title">Hai să Colaborăm!</h2>
-    <div class="contact-info">
-      <a class="contact-item" href="mailto:b.chirila@ymail.com" aria-label="Trimite email">
-        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-        <span>b.chirila@ymail.com</span>
-      </a>
-      <a class="contact-item" href="tel:+40751341756" aria-label="Sună acum">
-        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-        <span>+40 751 341 756</span>
-      </a>
-      <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Bucure%C8%99ti%2C+Rom%C3%A2nia" target="_blank" rel="noopener" aria-label="Vezi pe hartă">
-        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-        <span>București, România</span>
-      </a>
+    <div class="container contact-wrap">
+      <div class="kicker" style="justify-content:center" data-i18n="kContact">hai_sa_vorbim</div>
+      <h2 class="section-title" data-i18n="contactTitle">Hai sa colaboram</h2>
+      <p class="section-lead" style="margin:0 auto 0" data-i18n="contactLead">Deschis la oportunitati, colaborari si proiecte interesante. Raspund rapid.</p>
+      <div class="contact-card reveal">
+        <div class="contact-list">
+          <a class="contact-item" href="mailto:b.chirila@ymail.com">
+            <div class="ci"><i class="fas fa-envelope"></i></div>
+            <div class="cv"><span class="k mono">email</span><span class="val">b.chirila@ymail.com</span></div>
+          </a>
+          <a class="contact-item" href="tel:+40751341756">
+            <div class="ci"><i class="fas fa-phone"></i></div>
+            <div class="cv"><span class="k mono">telefon</span><span class="val">+40 751 341 756</span></div>
+          </a>
+          <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Bucure%C8%99ti%2C+Rom%C3%A2nia" target="_blank" rel="noopener">
+            <div class="ci"><i class="fas fa-location-dot"></i></div>
+            <div class="cv"><span class="k mono" data-i18n="cLoc">locatie</span><span class="val">Bucuresti, Romania</span></div>
+          </a>
+          <a class="contact-item" href="https://github.com/BogdanChirila2002" target="_blank" rel="noopener">
+            <div class="ci"><i class="fab fa-github"></i></div>
+            <div class="cv"><span class="k mono">github</span><span class="val">BogdanChirila2002</span></div>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    &copy; <span id="year">2024</span> Bogdan Chirilă. Toate drepturile rezervate.
+    <div class="container">&copy; <span id="year">2026</span> Bogdan Chirila &middot; <span data-i18n="footBuilt">construit cu</span> <span class="heart">&hearts;</span> <span data-i18n="footAnd">si mult</span> <span class="mono">&lt;/&gt;</span></div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    tsParticles.load("particles-js", {
-      fpsLimit: 60,
-      particles: {
-        number: { value: 50, density: { enable: true, value_area: 800 } },
-        color: { value: "#818cf8" },
-        shape: { type: "circle" },
-        opacity: { value: 0.12, random: true },
-        size: { value: 1.8, random: true },
-        move: {
-          enable: true,
-          speed: 0.7,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false
-        }
-      },
-      interactivity: {
-        detectsOn: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
-        }
-      },
-      detectRetina: true
+    /* nav border la scroll */
+    const nav = document.getElementById('nav');
+    addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20), { passive:true });
+
+    /* meniu mobil: scroll simplu la sectiuni (fara overlay complex) */
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('about').scrollIntoView({ behavior:'smooth' });
     });
 
-    const cursor = document.querySelector('.cursor');
-    const follower = document.querySelector('.cursor-follower');
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      cursor.style.left = x + 'px';
-      cursor.style.top = y + 'px';
-      follower.style.left = x + 'px';
-      follower.style.top = y + 'px';
-    });
-
+    /* tema */
     const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const icon = themeToggle.querySelector('i');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    body.className = savedTheme + '-theme';
-    icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    const ticon = themeToggle.querySelector('i');
+    function applyTheme(t) {
+      document.documentElement.classList.toggle('light', t === 'light');
+      ticon.className = t === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      document.querySelector('meta[name=theme-color]').setAttribute('content', t === 'light' ? '#f6f7fb' : '#16161e');
+    }
+    let theme = localStorage.getItem('theme') || 'dark';
+    applyTheme(theme);
     themeToggle.addEventListener('click', () => {
-      const isDark = body.classList.contains('dark-theme');
-      body.className = isDark ? 'light-theme' : 'dark-theme';
-      icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      theme = theme === 'light' ? 'dark' : 'light';
+      applyTheme(theme);
+      localStorage.setItem('theme', theme);
     });
 
-    function animateValue(id, start, end, duration) {
-      const range = end - start;
-      let current = start;
-      const increment = end > start ? 1 : -1;
-      const stepTime = Math.abs(Math.floor(duration / range));
-      const obj = document.getElementById(id);
-      const timer = setInterval(() => {
-        current += increment;
-        obj.textContent = current;
-        if (current === end) clearInterval(timer);
-      }, stepTime);
-    }
+    /* reveal la scroll */
+    const revIO = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } });
+    }, { threshold:.14 });
+    document.querySelectorAll('.reveal').forEach(el => revIO.observe(el));
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateValue('langCount', 0, 6, 1500);
-          animateValue('projectCount', 0, 8, 1500);
-          animateValue('hackathonCount', 0, 13, 1500);
-          animateValue('cloudCount', 0, 5, 1500);
-          observer.disconnect();
+    /* bare de skill: umple la intrare */
+    const barIO = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.fill').forEach(f => f.style.width = f.dataset.w + '%');
+          barIO.disconnect();
         }
       });
-    }, { threshold: 0.5 });
-    observer.observe(document.querySelector('.stats-grid'));
+    }, { threshold:.3 });
+    const lv = document.querySelector('.levels'); if (lv) barIO.observe(lv);
 
-    const translations = {
+    /* stats animate */
+    function animateVal(id, end, dur) {
+      const el = document.getElementById(id); let cur = 0;
+      const step = Math.max(20, Math.floor(dur / end));
+      const t = setInterval(() => { cur++; el.textContent = cur; if (cur >= end) clearInterval(t); }, step);
+    }
+    const statIO = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          animateVal('s1', 6, 1200); animateVal('s2', 8, 1200);
+          animateVal('s3', 13, 1400); animateVal('s4', 5, 1200);
+          statIO.disconnect();
+        }
+      });
+    }, { threshold:.5 });
+    const st = document.querySelector('.stats'); if (st) statIO.observe(st);
+
+    /* scrollspy nav */
+    const navA = [...document.querySelectorAll('.nav-links a')];
+    const secs = navA.map(a => document.querySelector(a.getAttribute('href')));
+    const spyIO = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          const id = '#' + e.target.id;
+          navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    secs.forEach(s => s && spyIO.observe(s));
+
+    /* terminal typing */
+    const term = document.getElementById('term');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function termLines(lang) {
+      return lang === 'en' ? [
+        ['pr','$ '],['tx','whoami\n'],
+        ['fl','bogdan-chirila '],['tx','-> full-stack developer\n\n'],
+        ['pr','$ '],['tx','cat stack.txt\n'],
+        ['st','PHP  JavaScript  MySQL  Python\n\n'],
+        ['pr','$ '],['tx','./deploy --status\n'],
+        ['ok','[ok] '],['tx','apps running in production\n'],
+        ['ok','[ok] '],['tx','13 modules - real-time sync\n']
+      ] : [
+        ['pr','$ '],['tx','whoami\n'],
+        ['fl','bogdan-chirila '],['tx','-> full-stack developer\n\n'],
+        ['pr','$ '],['tx','cat stack.txt\n'],
+        ['st','PHP  JavaScript  MySQL  Python\n\n'],
+        ['pr','$ '],['tx','./deploy --status\n'],
+        ['ok','[ok] '],['tx','aplicatii live in productie\n'],
+        ['ok','[ok] '],['tx','13 module - sync in timp real\n']
+      ];
+    }
+    let termTimer = null;
+    function runTerminal(lang) {
+      if (termTimer) { clearTimeout(termTimer); termTimer = null; }
+      term.innerHTML = '';
+      const parts = termLines(lang);
+      if (reduce) {
+        parts.forEach(([c, t]) => { const s = document.createElement('span'); s.className = c; s.textContent = t; term.appendChild(s); });
+        const car = document.createElement('span'); car.className = 'caret'; term.appendChild(car); return;
+      }
+      let pi = 0, ci = 0, span = null;
+      const caret = document.createElement('span'); caret.className = 'caret'; term.appendChild(caret);
+      function tick() {
+        if (pi >= parts.length) return;
+        const [cls, txt] = parts[pi];
+        if (ci === 0) { span = document.createElement('span'); span.className = cls; term.insertBefore(span, caret); }
+        span.textContent += txt[ci++];
+        if (ci >= txt.length) { pi++; ci = 0; }
+        const d = txt[ci - 1] === '\n' ? 180 : 26 + Math.random() * 34;
+        termTimer = setTimeout(tick, d);
+      }
+      tick();
+    }
+
+    /* ---------- i18n ---------- */
+    const I = {
       ro: {
-        home: "Acasă", about: "Despre", skills: "Competențe", timeline: "Educație", projects: "Proiecte", interests: "Interese", contact: "Contact",
-        heroTitle: "Construiesc Experiențe Digitale",
-        heroSubtitle: "Construiesc aplicații web și automatizări reale, folosite zilnic în producție - de la platforme PWA de depozit (PHP, JavaScript, MySQL) la sisteme desktop de procesare a facturilor cu OCR (Python). Cu accent pe performanță, fiabilitate și experiența utilizatorului.",
-        heroBtn: "Explorează Proiectele",
-        statLang: "Limbaje", statProj: "Proiecte", statMod: "Module AMS Scan", statIntegr: "Integrări API",
-        aboutTitle: "Despre Mine",
-        aboutText: "Sunt un dezvoltator full-stack de 24 de ani, pasionat de domeniul IT și dornic să contribui activ într-un mediu de lucru profesionist. În ultimul an am construit și menținut aplicații reale, folosite zilnic în producție: o platformă web PWA de gestiune a depozitului și un sistem desktop de automatizare a facturilor cu OCR și integrare ERP. Lucrez cu PHP, JavaScript, MySQL și Python, de la baze de date și API-uri până la interfața finală, și integrez soluții AI acolo unde aduc valoare reală. Mă caracterizează seriozitatea, spiritul de echipă bine dezvoltat și dorința constantă de a învăța și de a mă perfecționa. Sunt o persoană sociabilă, comunicativă și deschisă către colaborare, dar și capabilă să lucreze independent atunci când este nevoie. Consider că integritatea și bunul simț sunt valori esențiale atât în viața personală, cât și în cea profesională.",
-        skillsTitle: "Expertiză Tehnică",
-        timelineTitle: "Educație & Experiență",
-        interestsTitle: "Hobby-uri & Interese",
-        projectsTitle: "Proiecte Selectate",
-        proj1Title: "AMS Scan - Platformă WMS de Depozit (PWA)",
-        proj1Desc: "Aplicație web PWA folosită zilnic în producție la ATV Moto Shop pentru gestionarea depozitului. 13 module (livrări, recepție, retururi, inventar, verificare produs, schimbare locație, verificare comenzi) cu scanare de coduri prin camera telefonului (1D/2D), sincronizare în timp real între operatori, notificări Web Push, tipărire automată de etichete pe imprimante Zebra printr-un agent Python, generare AWB pentru curieri (GLS, Sameday, Fan, DPD, UPS) și integrare cu ERP-ul RVX și PrestaShop. Peste 56 de fișiere PHP, backend MySQL, complet mobile-first, cu autentificare multi-user și permisiuni pe module.",
-        proj2Title: "Automatizare Facturi - OCR & Integrare ERP",
-        proj2Desc: "Aplicație desktop (Python + Tkinter) care procesează automat facturile PDF de la furnizori internaționali (CFMOTO, ASP, MOTORIDER). Extrage produsele din PDF-uri native sau scanate folosind OCR Windows cu corecție de erori bazată pe constrângeri (~70-80% recuperare) și un fallback pe AI (Claude API) pentru facturile scanate dificile. Reconciliază prețurile din mai multe surse (feed-uri web + ERP RVX), calculează marje și adaosuri prin formule Excel și generează template-uri de import. ~4.000 linii Python, caching inteligent (TTL 24h), procesare pe fire de execuție și interfață proprie cu temă dark.",
-        proj8Title: "eCommerce, SEO & Marketing Digital",
-        proj8Desc: "La ATV Moto Shop mă ocup de prezența online a magazinului: listarea și optimizarea produselor, fotografie de produs, conținut și campanii de reclamă. Lucrez cu Google Ads, Google Analytics, Search Console și Google Merchant Center pentru SEO și pentru performanța campaniilor. Am integrat și am creat feed-uri de produse (import/export) și folosesc API-uri pentru sincronizarea catalogului între platforme, astfel încât prețurile, stocurile și descrierile să fie mereu actualizate.",
-        proj3Title: "Platformă de Închirieri Auto",
-        proj3Desc: "O aplicație web pentru gestionarea închirierilor de mașini, cu integrare cloud și baze de date relaționale. Proiectul meu de licență la Facultatea Spiru Haret.",
-        proj4Title: "Automatizare de Sarcini în Python",
-        proj4Desc: "Un script avansat de automatizare care gestionează fișiere, trimite emailuri programate și extrage date din surse web - perfect pentru productivitate personală.",
-        proj5Title: "Joc de Strategie în Pygame",
-        proj5Desc: "Un joc strategic 2D dezvoltat în Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie și colaborare online.",
-        proj6Title: "Integrator de API-uri (Hackathon)",
-        proj6Desc: "O aplicație rapidă dezvoltată într-un hackathon, care integrează mai multe API-uri (vreme, criptomonede, știri) într-un singur panou.",
-        proj7Title: "Panou Personal în Cloud",
-        proj7Desc: "Un panou personal care urmărește activitatea GitHub, stocarea în cloud și sarcinile zilnice - cu integrare Firebase și notificări.",
-        contactTitle: "Hai să Colaborăm!"
+        home:'acasa', about:'despre', skills:'competente', timeline:'educatie', projects:'proiecte', interests:'interese', contact:'contact',
+        heroLine1:'Construiesc', heroLine2:'produse digitale reale',
+        heroLead:'Aplicatii web si automatizari folosite zilnic in productie - de la platforme PWA de depozit (PHP, JavaScript, MySQL) la sisteme desktop de procesare a facturilor cu OCR (Python). Accent pe performanta, fiabilitate si experienta utilizatorului.',
+        ctaProjects:'Vezi proiectele', ctaContact:'Contact',
+        statLang:'Limbaje', statProj:'Proiecte', statMod:'Module AMS Scan', statIntegr:'Integrari API',
+        kAbout:'despre_mine', aboutTitle:'Cine sunt',
+        aboutP1:'Dezvoltator full-stack de 24 de ani, pasionat de IT si dornic sa contribui activ intr-un mediu profesionist. In ultimul an am construit si mentinut aplicatii reale, folosite zilnic in productie: o platforma web PWA de gestiune a depozitului si un sistem desktop de automatizare a facturilor cu OCR si integrare ERP.',
+        aboutP2:'Lucrez cu PHP, JavaScript, MySQL si Python, de la baze de date si API-uri pana la interfata finala, si integrez solutii AI acolo unde aduc valoare reala. Ma caracterizeaza seriozitatea, spiritul de echipa si dorinta constanta de a invata si de a ma perfectiona.',
+        aboutP3:'Sunt sociabil, comunicativ si deschis catre colaborare, dar si capabil sa lucrez independent atunci cand e nevoie. Consider ca integritatea si bunul simt sunt valori esentiale atat in viata personala, cat si in cea profesionala.',
+        factLoc:'locatie', factFocus:'focus', factCompany:'companie', factStatus:'status', factOpen:'deschis',
+        kSkills:'stack_tehnic', skillsTitle:'Expertiza tehnica',
+        skillsLead:'Tehnologiile cu care lucrez zi de zi, de la backend si baze de date pana la marketing digital si AI.',
+        skLang:'Limbaje', skWeb:'Web & Frameworks', skDb:'Baze de date & Integrari', skAuto:'Automatizare & Tools', skSeo:'Marketing Digital & SEO', skAi:'AI & Dezvoltare Asistata',
+        levelsTitle:'// niveluri de competenta',
+        kTimeline:'parcurs', timelineTitle:'Educatie & Experienta', timelineLead:'Drumul de la scoala tehnica la dezvoltare full-stack in productie.',
+        tlNow:'Prezent', tlYear:'an',
+        tl1t:'Full-Stack Developer & eCommerce - ATV Moto Shop',
+        tl1d:'Dezvolt si mentin aplicatiile interne folosite zilnic de echipa din depozit: platforma web PWA AMS Scan (PHP, JavaScript, MySQL) si sistemul de automatizare a facturilor cu OCR (Python). Integrari cu ERP-ul RVX si PrestaShop, scanare de coduri, sincronizare in timp real si tiparire de etichete. Ma ocup si de prezenta online: listare si optimizare produse, foto, reclama, SEO, Google Ads, Analytics, Search Console si Merchant, plus feed-uri de produse si API-uri de catalog. Folosesc AI in dezvoltare si am implementat functii cu integrare AI direct in aplicatii.',
+        tl2t:'Facultatea Spiru Haret',
+        tl2d:'Inginerie si Informatica. Lucrare de diploma: Implementarea unei platforme web de inchirieri auto folosind o baza de date in cloud.',
+        tl3t:'KLF Logistica',
+        tl3d:'Tehnician aparate de cafea si snack - munca serioasa, responsabila, intr-un mediu profesional.',
+        tl4t:'Colegiul Tehnic Petru Maior',
+        tl4d:'Bacalaureat, profil real. Atestat in informatica.',
+        kProjects:'portofoliu', projectsTitle:'Proiecte selectate', projectsLead:'Aplicatii reale in productie si proiecte personale care mi-au format stack-ul.',
+        p1t:'AMS Scan - Platforma WMS de Depozit (PWA)',
+        p1d:'Aplicatie web PWA folosita zilnic in productie la ATV Moto Shop pentru gestionarea depozitului. 13 module (livrari, receptie, retururi, inventar, verificare produs, schimbare locatie, verificare comenzi) cu scanare de coduri prin camera telefonului (1D/2D), sincronizare in timp real intre operatori, notificari Web Push, tiparire automata de etichete pe imprimante Zebra printr-un agent Python, generare AWB pentru curieri (GLS, Sameday, Fan, DPD, UPS) si integrare cu ERP-ul RVX si PrestaShop. Peste 56 de fisiere PHP, backend MySQL, complet mobile-first, cu autentificare multi-user si permisiuni pe module.',
+        p2t:'Automatizare Facturi - OCR & Integrare ERP',
+        p2d:'Aplicatie desktop (Python + Tkinter) care proceseaza automat facturile PDF de la furnizori internationali (CFMOTO, ASP, MOTORIDER). Extrage produsele din PDF-uri native sau scanate folosind OCR Windows cu corectie de erori bazata pe constrangeri (~70-80% recuperare) si un fallback pe AI (Claude API) pentru facturile scanate dificile. Reconciliaza preturile din mai multe surse, calculeaza marje prin formule Excel si genereaza template-uri de import. ~4.000 linii Python, caching inteligent (TTL 24h), procesare pe fire de executie si interfata proprie cu tema dark.',
+        p3t:'eCommerce, SEO & Marketing Digital',
+        p3d:'La ATV Moto Shop ma ocup de prezenta online a magazinului: listarea si optimizarea produselor, fotografie de produs, continut si campanii de reclama. Lucrez cu Google Ads, Analytics, Search Console si Merchant Center pentru SEO si performanta campaniilor. Am integrat si am creat feed-uri de produse (import/export) si folosesc API-uri pentru sincronizarea catalogului intre platforme, astfel incat preturile, stocurile si descrierile sa fie mereu actualizate.',
+        p4t:'Platforma de Inchirieri Auto',
+        p4d:'O aplicatie web pentru gestionarea inchirierilor de masini, cu integrare cloud si baze de date relationale. Proiectul meu de licenta la Facultatea Spiru Haret.',
+        p5t:'Automatizare de Sarcini in Python',
+        p5d:'Un script avansat de automatizare care gestioneaza fisiere, trimite emailuri programate si extrage date din surse web - perfect pentru productivitate personala.',
+        p6t:'Joc de Strategie in Pygame',
+        p6d:'Un joc strategic 2D dezvoltat in Python cu Pygame, inspirat din pasiunea pentru jocuri de strategie si colaborare online.',
+        p7t:'Integrator de API-uri (Hackathon)',
+        p7d:'O aplicatie rapida dezvoltata intr-un hackathon, care integreaza mai multe API-uri (vreme, criptomonede, stiri) intr-un singur panou.',
+        p8t:'Panou Personal in Cloud',
+        p8d:'Un panou personal care urmareste activitatea GitHub, stocarea in cloud si sarcinile zilnice - cu integrare Firebase si notificari.',
+        pInternal:'Aplicatie interna - detalii la cerere', pDetails:'Detalii la cerere',
+        kInterests:'in_afara_codului', interestsTitle:'Hobby-uri & Interese',
+        i1:'Jocuri Strategice', i2:'AI & Machine Learning', i3:'Securitate Cibernetica', i4:'Cloud Computing', i5:'Hackathoane', i6:'Fotbal', i7:'Fotografie', i8:'Motociclete & ATV', i9:'Tehnologie & Gadgeturi', i10:'Automatizari & DIY', i11:'Invatare Continua',
+        kContact:'hai_sa_vorbim', contactTitle:'Hai sa colaboram', contactLead:'Deschis la oportunitati, colaborari si proiecte interesante. Raspund rapid.',
+        cLoc:'locatie', footBuilt:'construit cu', footAnd:'si mult'
       },
       en: {
-        home: "Home", about: "About", skills: "Skills", timeline: "Education", projects: "Projects", interests: "Interests", contact: "Contact",
-        heroTitle: "Crafting Digital Experiences",
-        heroSubtitle: "I build real web apps and automations used daily in production - from warehouse PWA platforms (PHP, JavaScript, MySQL) to desktop invoice-processing systems with OCR (Python). Focused on performance, reliability, and user experience.",
-        heroBtn: "Explore Projects",
-        statLang: "Languages", statProj: "Projects", statMod: "AMS Scan Modules", statIntegr: "API Integrations",
-        aboutTitle: "About Me",
-        aboutText: "I'm a 24-year-old full-stack developer passionate about IT and eager to contribute actively in a professional environment. Over the past year I have built and maintained real applications used daily in production: a warehouse-management PWA and a desktop invoice-automation system with OCR and ERP integration. I work with PHP, JavaScript, MySQL, and Python - from databases and APIs to the final UI - and integrate AI solutions wherever they add real value. I value seriousness, strong teamwork, and a constant drive to learn and improve. I'm sociable, communicative, and open to collaboration, yet capable of working independently when needed. I consider integrity and common sense essential values in both personal and professional life.",
-        skillsTitle: "Technical Expertise",
-        timelineTitle: "Education & Experience",
-        interestsTitle: "Hobbies & Interests",
-        projectsTitle: "Selected Projects",
-        proj1Title: "AMS Scan - Warehouse WMS Platform (PWA)",
-        proj1Desc: "A PWA web app used daily in production at ATV Moto Shop to run the warehouse. 13 modules (deliveries, receiving, returns, inventory, product check, relocation, order verification) with phone-camera barcode scanning (1D/2D), real-time sync between operators, Web Push notifications, automatic label printing on Zebra printers via a Python agent, courier AWB generation (GLS, Sameday, Fan, DPD, UPS), and integration with the RVX ERP and PrestaShop. Over 56 PHP files, MySQL backend, fully mobile-first, with multi-user auth and per-module permissions.",
-        proj2Title: "Invoice Automation - OCR & ERP Integration",
-        proj2Desc: "A desktop app (Python + Tkinter) that automatically processes supplier PDF invoices from international vendors (CFMOTO, ASP, MOTORIDER). It extracts line items from native or scanned PDFs using Windows OCR with constraint-based error correction (~70-80% recovery) and an AI fallback (Claude API) for tricky scanned invoices. It reconciles prices across multiple sources (web feeds + RVX ERP), computes margins via Excel formulas, and generates import templates. ~4,000 lines of Python, smart 24h caching, threaded processing, and a custom dark-themed UI.",
-        proj8Title: "eCommerce, SEO & Digital Marketing",
-        proj8Desc: "At ATV Moto Shop I manage the store's online presence: product listing and optimization, product photography, content, and advertising campaigns. I work with Google Ads, Google Analytics, Search Console, and Google Merchant Center for SEO and campaign performance. I have integrated and built product feeds (import/export) and use APIs to sync the catalog across platforms, keeping prices, stock, and descriptions always up to date.",
-        proj3Title: "Car Rental Platform",
-        proj3Desc: "A web application for managing car rentals with cloud integration and relational databases. My bachelor's thesis at Spiru Haret University.",
-        proj4Title: "Python Task Automator",
-        proj4Desc: "An advanced automation script that organizes files, sends scheduled emails, and scrapes web data - perfect for personal productivity.",
-        proj5Title: "Pygame Strategy Game",
-        proj5Desc: "A 2D strategy game built with Python and Pygame, inspired by my passion for strategic and collaborative online games.",
-        proj6Title: "Hackathon API Integrator",
-        proj6Desc: "A rapid prototype built during a hackathon that integrates multiple APIs (weather, crypto, news) into a unified dashboard.",
-        proj7Title: "Cloud Personal Dashboard",
-        proj7Desc: "A personal dashboard tracking GitHub activity, cloud storage, and daily tasks - with Firebase integration and notifications.",
-        contactTitle: "Let's Collaborate!"
+        home:'home', about:'about', skills:'skills', timeline:'education', projects:'projects', interests:'interests', contact:'contact',
+        heroLine1:'I build', heroLine2:'real digital products',
+        heroLead:'Web apps and automations used daily in production - from warehouse PWA platforms (PHP, JavaScript, MySQL) to desktop invoice-processing systems with OCR (Python). Focused on performance, reliability, and user experience.',
+        ctaProjects:'View projects', ctaContact:'Contact',
+        statLang:'Languages', statProj:'Projects', statMod:'AMS Scan Modules', statIntegr:'API Integrations',
+        kAbout:'about_me', aboutTitle:'Who I am',
+        aboutP1:'A 24-year-old full-stack developer passionate about IT and eager to contribute in a professional environment. Over the past year I built and maintained real applications used daily in production: a warehouse-management PWA and a desktop invoice-automation system with OCR and ERP integration.',
+        aboutP2:'I work with PHP, JavaScript, MySQL, and Python - from databases and APIs to the final UI - and integrate AI solutions wherever they add real value. I value seriousness, teamwork, and a constant drive to learn and improve.',
+        aboutP3:'I am sociable, communicative, and open to collaboration, yet capable of working independently when needed. I consider integrity and common sense essential values in both personal and professional life.',
+        factLoc:'location', factFocus:'focus', factCompany:'company', factStatus:'status', factOpen:'open',
+        kSkills:'tech_stack', skillsTitle:'Technical expertise',
+        skillsLead:'The technologies I work with daily, from backend and databases to digital marketing and AI.',
+        skLang:'Languages', skWeb:'Web & Frameworks', skDb:'Databases & Integrations', skAuto:'Automation & Tools', skSeo:'Digital Marketing & SEO', skAi:'AI & Assisted Development',
+        levelsTitle:'// proficiency levels',
+        kTimeline:'journey', timelineTitle:'Education & Experience', timelineLead:'The path from technical school to full-stack development in production.',
+        tlNow:'Present', tlYear:'yr',
+        tl1t:'Full-Stack Developer & eCommerce - ATV Moto Shop',
+        tl1d:'I develop and maintain the internal apps the warehouse team uses daily: the AMS Scan PWA (PHP, JavaScript, MySQL) and the OCR invoice-automation system (Python). Integrations with the RVX ERP and PrestaShop, barcode scanning, real-time sync, and label printing. I also handle the online presence: product listing and optimization, photography, advertising, SEO, Google Ads, Analytics, Search Console and Merchant, plus product feeds and catalog APIs. I use AI in development and shipped AI-integrated features directly in the apps.',
+        tl2t:'Spiru Haret University',
+        tl2d:'Engineering and Computer Science. Bachelor thesis: Building a web car-rental platform using a cloud database.',
+        tl3t:'KLF Logistica',
+        tl3d:'Coffee and snack machine technician - serious, responsible work in a professional environment.',
+        tl4t:'Petru Maior Technical College',
+        tl4d:'High-school diploma, science profile. IT certification.',
+        kProjects:'portfolio', projectsTitle:'Selected projects', projectsLead:'Real production apps and personal projects that shaped my stack.',
+        p1t:'AMS Scan - Warehouse WMS Platform (PWA)',
+        p1d:'A PWA web app used daily in production at ATV Moto Shop to run the warehouse. 13 modules (deliveries, receiving, returns, inventory, product check, relocation, order verification) with phone-camera barcode scanning (1D/2D), real-time sync between operators, Web Push notifications, automatic label printing on Zebra printers via a Python agent, courier AWB generation (GLS, Sameday, Fan, DPD, UPS), and integration with the RVX ERP and PrestaShop. Over 56 PHP files, MySQL backend, fully mobile-first, with multi-user auth and per-module permissions.',
+        p2t:'Invoice Automation - OCR & ERP Integration',
+        p2d:'A desktop app (Python + Tkinter) that automatically processes supplier PDF invoices from international vendors (CFMOTO, ASP, MOTORIDER). It extracts line items from native or scanned PDFs using Windows OCR with constraint-based error correction (~70-80% recovery) and an AI fallback (Claude API) for tricky scans. It reconciles prices across multiple sources, computes margins via Excel formulas, and generates import templates. ~4,000 lines of Python, smart 24h caching, threaded processing, and a custom dark-themed UI.',
+        p3t:'eCommerce, SEO & Digital Marketing',
+        p3d:'At ATV Moto Shop I manage the store online presence: product listing and optimization, product photography, content, and advertising campaigns. I work with Google Ads, Analytics, Search Console, and Merchant Center for SEO and campaign performance. I have integrated and built product feeds (import/export) and use APIs to sync the catalog across platforms, keeping prices, stock, and descriptions always up to date.',
+        p4t:'Car Rental Platform',
+        p4d:'A web application for managing car rentals with cloud integration and relational databases. My bachelor thesis at Spiru Haret University.',
+        p5t:'Python Task Automator',
+        p5d:'An advanced automation script that organizes files, sends scheduled emails, and scrapes web data - perfect for personal productivity.',
+        p6t:'Pygame Strategy Game',
+        p6d:'A 2D strategy game built with Python and Pygame, inspired by my passion for strategic and collaborative online games.',
+        p7t:'Hackathon API Integrator',
+        p7d:'A rapid prototype built during a hackathon that integrates multiple APIs (weather, crypto, news) into a unified dashboard.',
+        p8t:'Cloud Personal Dashboard',
+        p8d:'A personal dashboard tracking GitHub activity, cloud storage, and daily tasks - with Firebase integration and notifications.',
+        pInternal:'Internal app - details on request', pDetails:'Details on request',
+        kInterests:'off_the_clock', interestsTitle:'Hobbies & Interests',
+        i1:'Strategy Games', i2:'AI & Machine Learning', i3:'Cybersecurity', i4:'Cloud Computing', i5:'Hackathons', i6:'Football', i7:'Photography', i8:'Motorcycles & ATV', i9:'Tech & Gadgets', i10:'Automation & DIY', i11:'Continuous Learning',
+        kContact:'let_s_talk', contactTitle:'Let us collaborate', contactLead:'Open to opportunities, collaborations, and interesting projects. I reply fast.',
+        cLoc:'location', footBuilt:'built with', footAnd:'and lots of'
       }
     };
 
-    let currentLang = 'ro';
-    const navLinks = document.querySelectorAll('.nav-links a');
+    let lang = 'ro';
     const langToggle = document.getElementById('langToggle');
-
-    function updateText(lang) {
-      currentLang = lang;
-      document.querySelector('.hero h1').textContent = translations[lang].heroTitle;
-      document.querySelector('.hero p').textContent = translations[lang].heroSubtitle;
-      document.querySelector('.btn').textContent = translations[lang].heroBtn;
-      document.querySelector('#about .section-title').textContent = translations[lang].aboutTitle;
-      document.getElementById('aboutText').textContent = translations[lang].aboutText;
-      document.querySelector('#skills .section-title').textContent = translations[lang].skillsTitle;
-      document.querySelector('#timeline .section-title').textContent = translations[lang].timelineTitle;
-      document.querySelector('#interests .section-title').textContent = translations[lang].interestsTitle;
-      document.querySelector('#projects .section-title').textContent = translations[lang].projectsTitle;
-      document.querySelector('#contact .section-title').textContent = translations[lang].contactTitle;
-
-      document.getElementById('statLangLabel').textContent = translations[lang].statLang;
-      document.getElementById('statProjLabel').textContent = translations[lang].statProj;
-      document.getElementById('statModLabel').textContent = translations[lang].statMod;
-      document.getElementById('statIntegrLabel').textContent = translations[lang].statIntegr;
-
-      const projCards = document.querySelectorAll('.project-card');
-      const projData = [
-        ['proj1Title', 'proj1Desc'],
-        ['proj2Title', 'proj2Desc'],
-        ['proj8Title', 'proj8Desc'],
-        ['proj3Title', 'proj3Desc'],
-        ['proj4Title', 'proj4Desc'],
-        ['proj5Title', 'proj5Desc'],
-        ['proj6Title', 'proj6Desc'],
-        ['proj7Title', 'proj7Desc']
-      ];
-      projData.forEach((keys, i) => {
-        if (!projCards[i]) return;
-        projCards[i].querySelector('h3').textContent = translations[lang][keys[0]];
-        projCards[i].querySelector('p').textContent = translations[lang][keys[1]];
+    function setLang(l) {
+      lang = l;
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.dataset.i18n;
+        if (I[l][k] !== undefined) el.textContent = I[l][k];
       });
-
-      const navKeys = ['home', 'about', 'skills', 'timeline', 'projects', 'interests', 'contact'];
-      navLinks.forEach((link, i) => {
-        link.textContent = translations[lang][navKeys[i]];
-      });
-
-      langToggle.textContent = lang === 'ro' ? '🇬🇧 EN' : '🇷🇴 RO';
+      langToggle.textContent = l === 'ro' ? 'EN' : 'RO';
+      runTerminal(l);
     }
+    langToggle.addEventListener('click', () => setLang(lang === 'ro' ? 'en' : 'ro'));
 
-    langToggle.addEventListener('click', () => {
-      updateText(currentLang === 'ro' ? 'en' : 'ro');
-    });
+    setLang('ro');
   </script>
 </body>
 </html>
